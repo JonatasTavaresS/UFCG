@@ -1,2 +1,12 @@
-# Laboratorio-de-Programacao-II
-Implementações de atividades das disciplinas de Programação II e Laboratório de Programação II ministradas no período 2021.2 pelos professores Dra. Lívia Maria Rodrigues Sampaio Campos, Dr. Matheus Gaudencio do Rêgo e Dr. Reinaldo Cézar de Morais Gomes, durante o 2º semestre do curso de Ciência da Computação na UFCG.
+# 🎓 UFCG
+
+Repositório contendo implementações de atividades que foram desenvolvidas ao longo da minha graduação em Ciência da Computação na Universidade Federal de Campina Grande.
+
+## 📚 Disciplinas
+
+### [2021.1](2021.1)
+- [Programação I e Laboratório de Programação I](2021.1)
+
+### [2021.2](2021.2)
+- [Programação II](2021.2)
+- [Laboratório de Programação II](2021.2/LP2)
