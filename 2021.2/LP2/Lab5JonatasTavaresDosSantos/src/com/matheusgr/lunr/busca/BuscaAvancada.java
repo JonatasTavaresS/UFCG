@@ -32,7 +32,7 @@ class BuscaAvancada implements Busca {
 	 * @param termos Termos a serem pesquisados.
 	 */
 	public BuscaAvancada(Map<String, String> metadados) {
-		// (new ValidadorBusca()).valida(termos);
+		(new ValidadorBusca()).valida(metadados);
 		this.metadados = metadados;
 	}
 
@@ -63,7 +63,7 @@ class BuscaAvancada implements Busca {
 	public String[][] descreveConsulta() {
 		String[][] resultado = new String[this.metadados.size()][];
 		for (int i = 0; i < resultado.length; i++) {
-			resultado[i] = new String[] { "METADADO " + (i + 1),  };
+			resultado[i] = new String[] { "METADADO " + (i + 1), };
 		}
 		return resultado;
 	}

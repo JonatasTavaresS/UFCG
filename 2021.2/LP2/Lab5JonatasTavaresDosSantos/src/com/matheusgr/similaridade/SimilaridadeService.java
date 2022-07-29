@@ -3,7 +3,6 @@ package com.matheusgr.similaridade;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 
 import com.matheusgr.lunr.documento.Documento;
 import com.matheusgr.lunr.documento.DocumentoService;
@@ -52,11 +51,8 @@ public class SimilaridadeService {
 		// COLOCA TERMOS DO DOCUMENTO 2 EM OUTRO CONJUNTO
 		// A SIMILARIDADE É DETERMINADA PELO...
 		// --> (TAMANHO DA INTERSEÇÃO) / (TAMANHO DA UNIÃO DOS CONJUNTOS)
-		Documento doc1 = this.documentoService.recuperaDocumento(docId1).get();
-		Documento doc2 = this.documentoService.recuperaDocumento(docId2).get();
-		if (doc1 == null || doc2 == null) {
-			throw new NoSuchElementException ();
-		}
+		Documento doc1 = this.documentoService.recuperaDocumentoOuFalhe(docId1);
+		Documento doc2 = this.documentoService.recuperaDocumentoOuFalhe(docId2);
 		Set<String> conjunto1 = new HashSet<>(Arrays.asList(doc1.getTexto()));
 		Set<String> conjunto2 = new HashSet<>(Arrays.asList(doc2.getTexto()));
 		Set<String> uniao = new HashSet<>();

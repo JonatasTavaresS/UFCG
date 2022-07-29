@@ -36,23 +36,20 @@ class ApresentacaoTest extends BaseTest {
 		this.documentoController.adicionaDocumentoTxt("txt", "Linha 1\nLinha 2\nLinha 3\nLinha 4");
 		assertEquals("Linha 1\nLinha 2\nLinha 3\nLinha 4", apresentacaoController.apresenta("txt", "primeiras"));
 	}
-	
+
 	@Test
 	void testPrimeirasLinhasJava() {
-		assertEquals("package com.matheusgr.lunr;\r\n"
-				+ "\r\n"
-				+ "import java.util.Optional;\r\n"
-				+ "\r\n"
-				+ "import com.matheusgr.lunr.busca.BuscaController;\r", apresentacaoController.apresenta(JAVA_ID, "primeiras"));
+		assertEquals(
+				"package com.matheusgr.lunr;\r\n" + "\r\n" + "import java.util.Optional;\r\n" + "\r\n"
+						+ "import com.matheusgr.lunr.busca.BuscaController;\r",
+				apresentacaoController.apresenta(JAVA_ID, "primeiras"));
 	}
-	
+
 	@Test
 	void testPrimeirasLinhasHTML() {
-		assertEquals("<!doctype html>\r\n"
-				+ "<html>\r\n"
-				+ "<head>\r\n"
-				+ "    <title>Example Domain</title>\r\n"
-				+ "\r", apresentacaoController.apresenta(HTML_ID, "primeiras"));
+		assertEquals(
+				"<!doctype html>\r\n" + "<html>\r\n" + "<head>\r\n" + "    <title>Example Domain</title>\r\n" + "\r",
+				apresentacaoController.apresenta(HTML_ID, "primeiras"));
 	}
 
 	@Test
@@ -84,11 +81,10 @@ class ApresentacaoTest extends BaseTest {
 
 	@Test
 	void testUltimasLinhasHTML() {
-		assertEquals("    domain in literature without prior coordination or asking for permission.</p>\r\n"
+		assertEquals(
+				"    domain in literature without prior coordination or asking for permission.</p>\r\n"
 						+ "    <p><a href=\"https://www.iana.org/domains/example\">More information...</a></p>\r\n"
-						+ "</div>\r\n"
-						+ "</body>\r\n"
-						+ "</html>\r",
+						+ "</div>\r\n" + "</body>\r\n" + "</html>\r",
 				apresentacaoController.apresenta(HTML_ID, "ultimas"));
 	}
 
@@ -130,5 +126,4 @@ class ApresentacaoTest extends BaseTest {
 
 		}
 	}
-
 }

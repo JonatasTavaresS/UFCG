@@ -49,7 +49,14 @@ public class BuscaService {
 		this.br.adicionaBusca(buscaSimples, documentos);
 		return documentos;
 	}
-	
+
+	/**
+	 * Realiza uma operação de busca avançada. Independente de ordenação ou
+	 * limitação.
+	 * 
+	 * @param buscaAvancada Busca avançada a ser realizada.
+	 * @return Resultado das buscas.
+	 */
 	public DocumentoDTO[] busca(BuscaAvancada buscaAvancada) {
 		Map<Documento, Integer> respostaDocumento = buscaAvancada.busca(this.ds);
 		DocumentoDTO[] documentos = ordenaAvancado(respostaDocumento);
@@ -58,26 +65,19 @@ public class BuscaService {
 	}
 
 	/*
-	 * Toda busca deve:
-	 * - ordenar de acordo com o valor de relevância (valor no mapa)
-	 * - retornar até 5 elementos (ou menos)
+	 * Toda busca deve: - ordenar de acordo com o valor de relevância (valor no
+	 * mapa) - retornar até 5 elementos (ou menos)
 	 */
 	private DocumentoDTO[] ordena(Map<Documento, Integer> respostaDocumento) {
-		return respostaDocumento.entrySet().stream()
-				.sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-				.limit(5)
-				.map(Entry::getKey)
-				.map(DocumentoDTO::new)
-				.collect(Collectors.toList())
+		return respostaDocumento.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+				.limit(5).map(Entry::getKey).map(DocumentoDTO::new).collect(Collectors.toList())
 				.toArray(new DocumentoDTO[] {});
 	}
-	
+
+	// TODO
 	private DocumentoDTO[] ordenaAvancado(Map<Documento, Integer> respostaDocumento) {
-		return respostaDocumento.entrySet().stream()
-				.map(Entry::getKey)
-				.map(DocumentoDTO::new)
-				.collect(Collectors.toList())
-				.toArray(new DocumentoDTO[] {});
+		return respostaDocumento.entrySet().stream().map(Entry::getKey).map(DocumentoDTO::new)
+				.collect(Collectors.toList()).toArray(new DocumentoDTO[] {});
 	}
 
 	/**

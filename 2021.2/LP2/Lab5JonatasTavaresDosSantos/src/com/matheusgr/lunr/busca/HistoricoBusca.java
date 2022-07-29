@@ -16,12 +16,7 @@ public class HistoricoBusca {
 	 * @param busca      Objeto de busca realizado.
 	 * @param documentos Resultado da pesquisa.
 	 */
-	public HistoricoBusca(BuscaSimples busca, String[] documentosIds) {
-		this.busca = busca;
-		this.documentosIds = documentosIds;
-	}
-	
-	public HistoricoBusca(BuscaAvancada busca, String[] documentosIds) {
+	public HistoricoBusca(Busca busca, String[] documentosIds) {
 		this.busca = busca;
 		this.documentosIds = documentosIds;
 	}

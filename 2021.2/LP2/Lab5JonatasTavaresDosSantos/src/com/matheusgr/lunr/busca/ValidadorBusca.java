@@ -11,8 +11,8 @@ import com.matheusgr.lunr.ValidadorPadrao;
 class ValidadorBusca extends ValidadorPadrao {
 
 	/**
-	 * Valida os termos de busca. Os termos de busca não podem ser objetos nulos
-	 * e pelo menos um termo deve ser não vazio.
+	 * Valida os termos de busca. Os termos de busca não podem ser objetos nulos e
+	 * pelo menos um termo deve ser não vazio.
 	 * 
 	 * @param termos Termos a serem buscados.
 	 */
@@ -25,15 +25,18 @@ class ValidadorBusca extends ValidadorPadrao {
 		}
 		throw new IllegalArgumentException("Pelo menos um termo não deve ser vazio");
 	}
-	
+
 	public void valida(Map<String, String> metadados) {
 		Objects.requireNonNull(metadados, "Conteúdo não pode ser nulo");
 		for (String key : metadados.keySet()) {
-			if (!metadados.get(key).isBlank()) {
-				return;
+			if (key == null) {
+				throw new NullPointerException("Não pode haver chave nula");
+			} else if (metadados.get(key).isBlank()) {
+				throw new IllegalArgumentException("Não pode ter um metadado vazio");
+			} else if (metadados.get(key) == null) {
+				throw new NullPointerException("Não pode haver metadado nulo");
 			}
 		}
-		throw new IllegalArgumentException("Pelo menos um termo não deve ser vazio");
 	}
 
 	/**
