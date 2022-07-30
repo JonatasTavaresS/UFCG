@@ -31,9 +31,9 @@ public class DocumentoService {
 	 * @param dr DocumentRepository a ser usado pelo service.
 	 */
 	public DocumentoService() {
-		this.dr = new DocumentoRepository(); 
+		this.dr = new DocumentoRepository();
 	}
-	
+
 	/**
 	 * Adiciona um documento. O documento já deve ter um ID. Este ID será usado para
 	 * registro no sistema. Caso o documento já exista, o documento será
@@ -66,7 +66,6 @@ public class DocumentoService {
 		}
 		return optional.get();
 	}
-	
 
 	/**
 	 * Contabiliza o total de documentos cadastrados na base de dados.
@@ -92,10 +91,8 @@ public class DocumentoService {
 		Documento d1 = this.recuperaDocumentoOuFalhe(id2);
 		Documento d2 = this.recuperaDocumentoOuFalhe(id2);
 		String novoId = "_MERGE" + id1 + "|" + id2;
-		String novoTexto = Stream
-				.concat(Stream.of(d1.getTexto()), Stream.of(d2.getTexto()))
-				.collect(Collectors.joining())
-				.toString();
+		String novoTexto = Stream.concat(Stream.of(d1.getTexto()), Stream.of(d2.getTexto()))
+				.collect(Collectors.joining()).toString();
 		this.adicionaDocumento(new DocumentoTexto(novoId, novoTexto));
 		return novoId;
 	}
@@ -109,15 +106,9 @@ public class DocumentoService {
 	 */
 	public String[] sumariza(String id) {
 		Documento d = this.recuperaDocumentoOuFalhe(id);
-		List<String> collected = Stream.of(d.getTexto())
-			.filter((x) -> x.length() > 5)
-			.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-			.entrySet()
-			.stream()
-			.sorted(Map.Entry.comparingByValue())
-			.limit(5)
-			.map(Entry::getKey)
-			.collect(Collectors.toList());
+		List<String> collected = Stream.of(d.getTexto()).filter((x) -> x.length() > 5)
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream()
+				.sorted(Map.Entry.comparingByValue()).limit(5).map(Entry::getKey).collect(Collectors.toList());
 		return collected.toArray(new String[] {});
 	}
 
@@ -132,6 +123,13 @@ public class DocumentoService {
 		return this.dr.busca(termo);
 	}
 
+	/**
+	 * Realiza uma busca avançada por documentos que possuam todos os metadados
+	 * passados como parâmetro.
+	 * 
+	 * @param metadados Metadados a serem buscados
+	 * @return Documentos que possuem todos os metadados.
+	 */
 	public Set<Documento> busca(Map<String, String> metadados) {
 		return this.dr.busca(metadados);
 	}

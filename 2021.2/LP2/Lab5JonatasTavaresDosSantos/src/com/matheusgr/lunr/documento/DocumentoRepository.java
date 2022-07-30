@@ -77,6 +77,12 @@ class DocumentoRepository {
 		return docs;
 	}
 
+	/**
+	 * Realiza uma busca simples pelos metadados.
+	 * 
+	 * @param metadados Metadados a serem buscados.
+	 * @return Conjunto de documentos com os metadados.
+	 */
 	public Set<Documento> busca(Map<String, String> metadados) {
 		Set<Documento> docs = new HashSet<>();
 		for (String key : this.documentos.keySet()) {

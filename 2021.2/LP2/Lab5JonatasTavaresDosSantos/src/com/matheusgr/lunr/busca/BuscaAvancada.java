@@ -62,8 +62,9 @@ class BuscaAvancada implements Busca {
 	 */
 	public String[][] descreveConsulta() {
 		String[][] resultado = new String[this.metadados.size()][];
+		String[] chaves = (String[]) this.metadados.keySet().toArray();
 		for (int i = 0; i < resultado.length; i++) {
-			resultado[i] = new String[] { "METADADO " + (i + 1), };
+			resultado[i] = new String[] { "METADADO " + chaves[i], this.metadados.get(chaves[i]) };
 		}
 		return resultado;
 	}

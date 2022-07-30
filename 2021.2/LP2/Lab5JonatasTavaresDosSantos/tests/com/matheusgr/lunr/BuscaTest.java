@@ -94,7 +94,7 @@ class BuscaTest extends BaseTest {
 		assertArrayEquals(new String[] { "TERMO 2", "public" }, historicoDepuracao[1]);
 
 	}
-
+	
 	// Testes do método de busca avançada
 
 	@Test
@@ -134,6 +134,17 @@ class BuscaTest extends BaseTest {
 	void testBuscaAvancadaMetadadoNulo() {
 		Map<String, String> metadadosBuscados = new HashMap<>();;
 		metadadosBuscados.put("", null);
+		try {
+			this.buscaController.busca(metadadosBuscados);
+		} catch (NullPointerException npe) {
+
+		}
+	}
+	
+	@Test
+	void testBuscaAvancadaMetadadoChaveNula() {
+		Map<String, String> metadadosBuscados = new HashMap<>();;
+		metadadosBuscados.put(null, "Teste");
 		try {
 			this.buscaController.busca(metadadosBuscados);
 		} catch (NullPointerException npe) {

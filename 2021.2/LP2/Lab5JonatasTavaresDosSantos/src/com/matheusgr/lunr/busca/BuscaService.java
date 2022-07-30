@@ -74,7 +74,12 @@ public class BuscaService {
 				.toArray(new DocumentoDTO[] {});
 	}
 
-	// TODO
+	/**
+	 * Converte os documentos para um array de DocumentoDTO sem limite ou ordenação.
+	 * 
+	 * @param respostaDocumento Documentos buscados
+	 * @return DocumentoDTO[] com os documentos buscados
+	 */
 	private DocumentoDTO[] ordenaAvancado(Map<Documento, Integer> respostaDocumento) {
 		return respostaDocumento.entrySet().stream().map(Entry::getKey).map(DocumentoDTO::new)
 				.collect(Collectors.toList()).toArray(new DocumentoDTO[] {});

@@ -68,5 +68,4 @@ public class SimilaridadeService {
 		similaridade *= 100;
 		return similaridade;
 	}
-
 }
