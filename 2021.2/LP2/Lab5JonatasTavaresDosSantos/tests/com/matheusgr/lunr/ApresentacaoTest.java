@@ -18,6 +18,15 @@ class ApresentacaoTest extends BaseTest {
 	}
 
 	@Test
+	void testApresentaMetodoNull() {
+		try {
+			apresentacaoController.apresenta(TEXTO1_ID, null);
+		} catch (NullPointerException npe) {
+
+		}
+	}
+
+	@Test
 	void testPrimeirasLinhasLimiteTxt() {
 		this.documentoController.adicionaDocumentoTxt("txt", "Linha 1\nLinha 2\nLinha 3\nLinha 4\nLinha 5");
 		assertEquals("Linha 1\nLinha 2\nLinha 3\nLinha 4\nLinha 5",
@@ -57,6 +66,15 @@ class ApresentacaoTest extends BaseTest {
 		try {
 			apresentacaoController.apresenta("inexistente", "primeiras");
 		} catch (NoSuchElementException nsee) {
+
+		}
+	}
+
+	@Test
+	void testApresentaPrimeirasLinhasDocumentoNulo() {
+		try {
+			apresentacaoController.apresenta(null, "primeiras");
+		} catch (NullPointerException npe) {
 
 		}
 	}
@@ -106,6 +124,15 @@ class ApresentacaoTest extends BaseTest {
 	}
 
 	@Test
+	void testApresentaUltimasLinhasDocumentoNulo() {
+		try {
+			apresentacaoController.apresenta(null, "ultimas");
+		} catch (NullPointerException npe) {
+
+		}
+	}
+
+	@Test
 	void testCaixaAltaTxt() {
 		this.documentoController.adicionaDocumentoTxt("txt", "Linha 1\nLinha 2\nLinha 3\nLinha 4\nLinha 5");
 		assertEquals("LINHA 1\nLINHA 2\nLINHA 3\nLINHA 4\nLINHA 5",
@@ -119,10 +146,25 @@ class ApresentacaoTest extends BaseTest {
 	}
 
 	@Test
+	void testCaixaAltaHTML() {
+		var exemplo = new DocumentoExemplos();
+		assertEquals(exemplo.sampleHTML().toUpperCase(), apresentacaoController.apresenta(HTML_ID, "caixa alta"));
+	}
+
+	@Test
 	void testApresentaCaixaAltaDocumentoInexistente() {
 		try {
 			apresentacaoController.apresenta("inexistente", "caixa alta");
 		} catch (NoSuchElementException nsee) {
+
+		}
+	}
+
+	@Test
+	void testApresentaCaixaAltaDocumentoNul() {
+		try {
+			apresentacaoController.apresenta(null, "caixa alta");
+		} catch (NullPointerException npe) {
 
 		}
 	}

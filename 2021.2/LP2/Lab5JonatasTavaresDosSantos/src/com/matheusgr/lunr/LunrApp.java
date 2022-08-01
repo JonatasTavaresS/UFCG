@@ -33,21 +33,21 @@ public class LunrApp {
 	/**
 	 * Inicializador do LunrApp.
 	 * 
-	 * Todas as entidades de interação no sistema devem ser obtidas a partir
-	 * do LunrApp. Isto garante a correta inicialização das entidades.
+	 * Todas as entidades de interação no sistema devem ser obtidas a partir do
+	 * LunrApp. Isto garante a correta inicialização das entidades.
 	 */
 	public LunrApp() {
 		var documentoService = new DocumentoService();
 		var buscaService = new BuscaService(documentoService);
 		var similaridadeService = new SimilaridadeService(documentoService);
 		var apresentacaoService = new ApresentacaoService(documentoService);
-		
+
 		this.documentoController = new DocumentoController(documentoService);
 		this.buscaController = new BuscaController(buscaService);
 		this.similaridadeController = new SimilaridadeController(similaridadeService);
 		this.apresentacaoController = new ApresentacaoController(apresentacaoService);
 	}
-	
+
 	/**
 	 * Obtem o controller de documentos para interação com os usuários.
 	 * 
@@ -57,17 +57,16 @@ public class LunrApp {
 	public DocumentoController getDocumentoController() {
 		return this.documentoController;
 	}
-	
+
 	/**
 	 * Obtem o controller de buscas para interação com os usuários.
 	 * 
-	 * @return BuscaController para receber requisições do usuário sobre as
-	 *         buscas.
+	 * @return BuscaController para receber requisições do usuário sobre as buscas.
 	 */
 	public BuscaController getBuscaController() {
 		return this.buscaController;
 	}
-	
+
 	/**
 	 * Obtem o controller de similaridade para interação com os usuários.
 	 * 
@@ -77,7 +76,7 @@ public class LunrApp {
 	public SimilaridadeController getSimilaridadeController() {
 		return this.similaridadeController;
 	}
-	
+
 	/**
 	 * Obtem o controller de apresentacao para interação com os usuários.
 	 * 
@@ -87,5 +86,5 @@ public class LunrApp {
 	public ApresentacaoController getApresentacaoController() {
 		return this.apresentacaoController;
 	}
-	
+
 }

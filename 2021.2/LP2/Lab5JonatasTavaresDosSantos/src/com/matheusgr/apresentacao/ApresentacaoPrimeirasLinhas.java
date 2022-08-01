@@ -7,7 +7,7 @@ import com.matheusgr.lunr.documento.Documento;
  * 
  * @author Jônatas Tavares dos Santos - 121110769
  */
-public class ApresentacaoPrimeirasLinhas implements Apresentacao {
+class ApresentacaoPrimeirasLinhas implements Apresentacao {
 
 	/**
 	 * Define a quantas das primeiras linhas de um documento serão exibidas.
@@ -48,7 +48,8 @@ public class ApresentacaoPrimeirasLinhas implements Apresentacao {
 
 	/**
 	 * Método que retorna uma String que apresenta as 5 primeiras linhas do
-	 * documento.
+	 * documento. Ou, caso o documento tenha menos de 5 linhas, exibe todas as
+	 * linahs do documento.
 	 * 
 	 * @return Retorna uma string de apresentação.
 	 */

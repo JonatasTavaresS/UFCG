@@ -29,7 +29,7 @@ class DocumentoHtml implements Documento {
 	/**
 	 * Construtor padrão. Realiza o processamento de extração do HTML.
 	 * 
-	 * @param id ID do documento a ser criado.
+	 * @param id       ID do documento a ser criado.
 	 * @param original HTML do documento a ser criado.
 	 */
 	public DocumentoHtml(String id, String original) {
@@ -61,7 +61,7 @@ class DocumentoHtml implements Documento {
 		}
 		return this.split;
 	}
-	
+
 	@Override
 	public String getOriginal() {
 		return this.original;
@@ -104,9 +104,8 @@ class DocumentoHtml implements Documento {
 	}
 
 	/*
-	 * Os metadados do HTML incluem, especificamente:
-	 * - Quantidade de tags, estimada a partir da quantidade de símbolos <
-	 * - Todo o corpo da tag <head>
+	 * Os metadados do HTML incluem, especificamente: - Quantidade de tags, estimada
+	 * a partir da quantidade de símbolos < - Todo o corpo da tag <head>
 	 */
 	private Map<String, String> extractHead(String original2) {
 		Map<String, String> metadados2 = new HashMap<>();

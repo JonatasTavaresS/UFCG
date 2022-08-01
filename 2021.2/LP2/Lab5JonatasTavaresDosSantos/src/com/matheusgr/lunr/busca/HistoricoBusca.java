@@ -13,8 +13,8 @@ public class HistoricoBusca {
 	 * Construção do histórico a partir dos parâmetros de busca (definido pelo
 	 * objeto de busca) e resultado da consulta.
 	 * 
-	 * @param busca      Objeto de busca realizado.
-	 * @param documentos Resultado da pesquisa.
+	 * @param busca         Objeto de busca realizado.
+	 * @param documentosIds Resultado da pesquisa.
 	 */
 	public HistoricoBusca(Busca busca, String[] documentosIds) {
 		this.busca = busca;

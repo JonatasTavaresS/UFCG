@@ -25,7 +25,7 @@ public class ApresentacaoService {
 	 * Realiza a apresentação do documento indicado.
 	 * 
 	 * 
-	 * @param docId1           Documento a ser apresentado.
+	 * @param docId            Documento a ser apresentado.
 	 * @param tipoApresentacao modo de apresentacao a ser aplicado sobre o
 	 *                         documento.
 	 */

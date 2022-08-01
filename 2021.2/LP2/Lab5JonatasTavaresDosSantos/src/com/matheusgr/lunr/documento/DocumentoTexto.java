@@ -21,7 +21,8 @@ class DocumentoTexto implements Documento {
 
 	/**
 	 * Construtor padrão do documento de texto.
-	 * @param id ID do documento.
+	 * 
+	 * @param id  ID do documento.
 	 * @param txt Texto do documento.
 	 */
 	public DocumentoTexto(String id, String txt) {
@@ -32,7 +33,8 @@ class DocumentoTexto implements Documento {
 
 	@Override
 	public double metricaTextoUtil() {
-		long extractedSize = (new TransformaTexto()).transforma(TransformaTexto.Algoritmos.cleanSpaces, this.limpo).length();
+		long extractedSize = (new TransformaTexto()).transforma(TransformaTexto.Algoritmos.cleanSpaces, this.limpo)
+				.length();
 		return (1.0 * extractedSize) / this.original.length();
 	}
 
@@ -44,17 +46,18 @@ class DocumentoTexto implements Documento {
 	@Override
 	public String[] getTexto() {
 		if (this.split == null) {
-			this.split = (new TransformaTexto()).transforma(TransformaTexto.Algoritmos.cleanLines, this.limpo).split(" ");
+			this.split = (new TransformaTexto()).transforma(TransformaTexto.Algoritmos.cleanLines, this.limpo)
+					.split(" ");
 			Arrays.sort(this.split);
 		}
 		return this.split;
 	}
-	
+
 	@Override
 	public String getOriginal() {
 		return this.original;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -71,7 +74,7 @@ class DocumentoTexto implements Documento {
 		DocumentoTexto other = (DocumentoTexto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "===" + this.id + System.lineSeparator() + this.limpo;

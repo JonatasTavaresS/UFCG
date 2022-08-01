@@ -94,6 +94,4 @@ public class DocumentoDTO {
 		return Objects.equals(id, other.id);
 	}
 
-	
-	
 }

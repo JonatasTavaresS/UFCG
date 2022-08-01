@@ -48,7 +48,7 @@ public class DocumentoController {
 	 */
 	public void adicionaDocumentoHtml(String id, String html) {
 		this.validador.validacao(id, html);
-		this.ds.adicionaDocumento(new DocumentoHtml(id, html));		
+		this.ds.adicionaDocumento(new DocumentoHtml(id, html));
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class DocumentoController {
 	 */
 	public void adicionaDocumentoJava(String id, String java) {
 		this.validador.validacao(id, java);
-		this.ds.adicionaDocumento(new DocumentoJava(id, java));		
+		this.ds.adicionaDocumento(new DocumentoJava(id, java));
 	}
 
 	/**

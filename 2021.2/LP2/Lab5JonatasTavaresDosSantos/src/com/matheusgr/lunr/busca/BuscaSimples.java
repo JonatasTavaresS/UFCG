@@ -68,9 +68,9 @@ class BuscaSimples implements Busca {
 	public String[][] descreveConsulta() {
 		String[][] resultado = new String[this.termos.length][];
 		for (int i = 0; i < resultado.length; i++) {
-			resultado[i] = new String[] {"TERMO " + (i + 1), this.termos[i]};
+			resultado[i] = new String[] { "TERMO " + (i + 1), this.termos[i] };
 		}
 		return resultado;
 	}
-	
+
 }

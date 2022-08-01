@@ -9,27 +9,21 @@ import com.matheusgr.lunr.documento.DocumentoService;
 /**
  * BuscaAvancada realiza uma operação de busca a partir de metadados.
  * 
- * Dado os termos, deve se buscar por tais documentos e ordená-los de acordo com
- * a quantidade de termos que são atendidos pela busca.
+ * A busca avançada deve selecionar TODOS os documentos que tenham TODOS OS
+ * METADADOS indicados.
  * 
- * Quanto mais termos da busca estão presentes, mais relevância tem o documento.
- * 
- * Não importa a quantidade de vezes que um termo aparece no documento, apenas
- * se o documento tem ou não o termo pelo menos uma vez.
- * 
- * Os documentos que não tem nenhum dos termos pesquisados, não devem ser
- * retornados.
+ * @author Jônatas Tavares dos Santos - 121110769
  */
 class BuscaAvancada implements Busca {
 
 	private Map<String, String> metadados;
 
 	/**
-	 * Construtor padrão com os termos a serem encontrados.
+	 * Construtor padrão com os metadados a serem encontrados.
 	 * 
-	 * Os termos não vazios são ignorados. Pelo menos 1 termo deve ser não vazio.
+	 * Não podem haver metadados com chaves nulas ou com valores nulos ou vazios.
 	 * 
-	 * @param termos Termos a serem pesquisados.
+	 * @param metadados Metadados a serem pesquisados.
 	 */
 	public BuscaAvancada(Map<String, String> metadados) {
 		(new ValidadorBusca()).valida(metadados);
@@ -57,14 +51,15 @@ class BuscaAvancada implements Busca {
 	/**
 	 * Descreve uma consulta para explicar a consulta que foi feita.
 	 * 
-	 * @return Descrição da busca, onde cada linha representa um parâmetro de busca
-	 *         e as colunas representam um detelhamento de cada parâmetro.
+	 * @return Descrição da busca, onde cada linha representa a chave de um metadado
+	 *         de busca e as colunas representam um detelhamento de chave.
 	 */
 	public String[][] descreveConsulta() {
 		String[][] resultado = new String[this.metadados.size()][];
-		String[] chaves = (String[]) this.metadados.keySet().toArray();
-		for (int i = 0; i < resultado.length; i++) {
-			resultado[i] = new String[] { "METADADO " + chaves[i], this.metadados.get(chaves[i]) };
+		int cont = 0;
+		for (String key : this.metadados.keySet()) {
+			resultado[cont] = new String[] { "METADADO " + key, this.metadados.get(key) };
+			cont++;
 		}
 		return resultado;
 	}

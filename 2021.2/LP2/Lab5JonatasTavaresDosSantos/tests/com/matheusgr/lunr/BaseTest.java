@@ -13,7 +13,7 @@ class BaseTest {
 	public static final String TEXTO2_ID = "ABC";
 	public static final String JAVA_ID = "456";
 	public static final String HTML_ID = "123";
-	
+
 	protected DocumentoController documentoController;
 	protected BuscaController buscaController;
 	protected SimilaridadeController similaridadeController;
@@ -29,8 +29,9 @@ class BaseTest {
 		var exemplo = new DocumentoExemplos();
 		this.documentoController.adicionaDocumentoHtml(HTML_ID, exemplo.sampleHTML());
 		this.documentoController.adicionaDocumentoJava(JAVA_ID, exemplo.sampleJava());
-		this.documentoController.adicionaDocumentoTxt(TEXTO1_ID, "um arquivo! texto simples.\r\nuse DUAS linhas apenas.");
-		this.documentoController.adicionaDocumentoTxt(TEXTO2_ID, "um arquivo! texto simples.\r\nuse TRÊS linhas agora.\r\nMAIS AVANÇO!");
+		this.documentoController.adicionaDocumentoTxt(TEXTO1_ID,
+				"um arquivo! texto simples.\r\nuse DUAS linhas apenas.");
+		this.documentoController.adicionaDocumentoTxt(TEXTO2_ID,
+				"um arquivo! texto simples.\r\nuse TRÊS linhas agora.\r\nMAIS AVANÇO!");
 	}
-	
 }

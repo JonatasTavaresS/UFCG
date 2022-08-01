@@ -7,7 +7,7 @@ import com.matheusgr.lunr.documento.Documento;
  * 
  * @author Jônatas Tavares dos Santos - 121110769
  */
-public class ApresentacaoUltimasLinhas implements Apresentacao {
+class ApresentacaoUltimasLinhas implements Apresentacao {
 
 	/**
 	 * Define a quantas das últimas linhas de um documento serão exibidas.
@@ -29,7 +29,7 @@ public class ApresentacaoUltimasLinhas implements Apresentacao {
 	}
 
 	/**
-	 * Caso o númerode linhas de um documento seja inferior ao número de linhas a
+	 * Caso o número de linhas de um documento seja inferior ao número de linhas a
 	 * serem apresentadas, define que o documento será apresentado da linha 0 até a
 	 * linha final. Caso seja maior ou igual ao número de linhas definido,
 	 * apresentará de numeroLinhas - NUMERO_LINHAS até a última linha.
@@ -46,6 +46,8 @@ public class ApresentacaoUltimasLinhas implements Apresentacao {
 
 	/**
 	 * Método que retorna uma String que apresenta as 5 últimas linhas do documento.
+	 * Ou, caso o documento tenha menos que 5 linhas, exibe todas as linhas do
+	 * documento.
 	 * 
 	 * @return Retorna uma string de apresentação.
 	 */

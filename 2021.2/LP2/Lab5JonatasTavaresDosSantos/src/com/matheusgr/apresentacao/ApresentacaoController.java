@@ -1,8 +1,7 @@
 package com.matheusgr.apresentacao;
 
 /**
- * Controller para operações relacionadas com a apresentação
- * de documentos.
+ * Controller para operações relacionadas com a apresentação de documentos.
  */
 public class ApresentacaoController {
 
@@ -18,12 +17,12 @@ public class ApresentacaoController {
 	}
 
 	/**
-	 * Operação de apresentação de um documento. Para a apresentação
-	 * será possível exibição o documento de acordo com o modo de exibição
-	 * especificado.
+	 * Operação de apresentação de um documento. Para a apresentação será possível
+	 * exibição o documento de acordo com o modo de exibição especificado.
 	 * 
-	 * @param docId documento a ser apresentado.
-	 * @param tipoApresentacao modo de apresentacao a ser aplicado sobre o documento.
+	 * @param docId            documento a ser apresentado.
+	 * @param tipoApresentacao modo de apresentacao a ser aplicado sobre o
+	 *                         documento.
 	 */
 	public String apresenta(String docId, String tipoApresentacao) {
 		return apresentacaoService.apresenta(docId, tipoApresentacao);

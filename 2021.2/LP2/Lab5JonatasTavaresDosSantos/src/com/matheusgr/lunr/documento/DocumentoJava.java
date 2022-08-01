@@ -54,7 +54,7 @@ class DocumentoJava implements Documento {
 		}
 		return this.split;
 	}
-	
+
 	@Override
 	public String getOriginal() {
 		return this.original;

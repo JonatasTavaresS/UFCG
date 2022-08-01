@@ -70,7 +70,7 @@ class BuscaTest extends BaseTest {
 	}
 
 	@Test
-	void testHistoricoDeBusca() {
+	void testHistoricoDeUmaBuscaSimples() {
 		this.buscaController.busca(new String[] { "public" });
 		this.buscaController.busca(new String[] { "use" });
 		this.buscaController.busca(new String[] { "use", "public" });
@@ -92,10 +92,22 @@ class BuscaTest extends BaseTest {
 		assertEquals(2, historicoDepuracao.length);
 		assertArrayEquals(new String[] { "TERMO 1", "use" }, historicoDepuracao[0]);
 		assertArrayEquals(new String[] { "TERMO 2", "public" }, historicoDepuracao[1]);
-
 	}
-	
+
 	// Testes do método de busca avançada
+
+	@Test
+	void testHistoricoDeUmaBuscaAvancada() {
+		Map<String, String> metadadosBuscados = new HashMap<>();
+		metadadosBuscados.put("TIPO", "txt");
+		metadadosBuscados.put("LINHAS", "1");
+		this.buscaController.busca(metadadosBuscados);
+		String[][] historicoDepuracao = this.buscaController.recuperaHistoricoDepuracao(0);
+		String[] historicoIds = this.buscaController.recuperaHistoricoIds(0);
+		assertArrayEquals(new String[] { "METADADO LINHAS", "1" }, historicoDepuracao[0]);
+		assertArrayEquals(new String[] { "METADADO TIPO", "txt" }, historicoDepuracao[1]);
+		assertArrayEquals(new String[] { TEXTO1_ID }, historicoIds);
+	}
 
 	@Test
 	void testBuscaAvancada() {
@@ -121,7 +133,7 @@ class BuscaTest extends BaseTest {
 
 	@Test
 	void testBuscaAvancadaMetadadosVazio() {
-		Map<String, String> metadadosBuscados = new HashMap<>();;
+		Map<String, String> metadadosBuscados = new HashMap<>();
 		metadadosBuscados.put("", "");
 		try {
 			this.buscaController.busca(metadadosBuscados);
@@ -129,10 +141,10 @@ class BuscaTest extends BaseTest {
 
 		}
 	}
-	
+
 	@Test
 	void testBuscaAvancadaMetadadoNulo() {
-		Map<String, String> metadadosBuscados = new HashMap<>();;
+		Map<String, String> metadadosBuscados = new HashMap<>();
 		metadadosBuscados.put("", null);
 		try {
 			this.buscaController.busca(metadadosBuscados);
@@ -140,11 +152,22 @@ class BuscaTest extends BaseTest {
 
 		}
 	}
-	
+
 	@Test
 	void testBuscaAvancadaMetadadoChaveNula() {
-		Map<String, String> metadadosBuscados = new HashMap<>();;
+		Map<String, String> metadadosBuscados = new HashMap<>();
 		metadadosBuscados.put(null, "Teste");
+		try {
+			this.buscaController.busca(metadadosBuscados);
+		} catch (NullPointerException npe) {
+
+		}
+	}
+
+	@Test
+	void testBuscaAvancadaMetadadoAmbosNulos() {
+		Map<String, String> metadadosBuscados = new HashMap<>();
+		metadadosBuscados.put(null, null);
 		try {
 			this.buscaController.busca(metadadosBuscados);
 		} catch (NullPointerException npe) {

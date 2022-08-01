@@ -26,15 +26,21 @@ class ValidadorBusca extends ValidadorPadrao {
 		throw new IllegalArgumentException("Pelo menos um termo não deve ser vazio");
 	}
 
+	/**
+	 * Valida os metadados de busca. Os metadados de busca não podem ser objetos
+	 * nulos, nem ter chaves nulas, nem ter valor nulo ou vazio.
+	 * 
+	 * @param metadados
+	 */
 	public void valida(Map<String, String> metadados) {
 		Objects.requireNonNull(metadados, "Conteúdo não pode ser nulo");
 		for (String key : metadados.keySet()) {
 			if (key == null) {
 				throw new NullPointerException("Não pode haver chave nula");
-			} else if (metadados.get(key).isBlank()) {
-				throw new IllegalArgumentException("Não pode ter um metadado vazio");
 			} else if (metadados.get(key) == null) {
 				throw new NullPointerException("Não pode haver metadado nulo");
+			} else if (metadados.get(key).isBlank()) {
+				throw new IllegalArgumentException("Não pode ter um metadado vazio");
 			}
 		}
 	}

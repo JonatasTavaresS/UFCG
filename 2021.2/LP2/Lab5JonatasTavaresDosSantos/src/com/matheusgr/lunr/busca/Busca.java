@@ -24,8 +24,7 @@ public interface Busca {
 	/**
 	 * Descreve uma consulta para explicar a consulta que foi feita.
 	 * 
-	 * @return Descrição da busca, onde cada linha representa um parâmetro de busca
-	 *         e as colunas representam um detelhamento de cada parâmetro.
+	 * @return Descrição da busca a depender se é avançada ou simples.
 	 */
 	public String[][] descreveConsulta();
 }
