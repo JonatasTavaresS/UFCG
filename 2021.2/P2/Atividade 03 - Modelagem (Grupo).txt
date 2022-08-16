@@ -1,0 +1,95 @@
+Main
+association FaBorController
+---
+---
++ static main(args: str[]): void
+---
+
+FaBorController
+composes Bordado
+composes Robo <Abstract>
+---
+- linhaProducao: Robo[]
+- bordados: HashMap<Integer, Bordado>
+- robos: HashMap<str, Robo>
+---
++ FaBorController()
++ cadastraBordado(altura: int, largura: int): int
++ listaBordado(idBordado: int): str
++ cadastraRoboLimpador(idRobo: str): str
++ cadastraRoboBorda(idRobo: str): str
++ cadastraRoboRetangulo(x1: int, y1: int, x2: int, y2: int, idRobo: str): str
++ cadastraRoboPonto(x: int, y: int, idRobo: str): str
++ cadastraProd(idRobo: str, posicao: int): void
++ processa(idBordado: int): double
++ pegaPeso(): int
++ apagaRobo(idRobo: str): void
++ contaProcessamentos(idBordado: int): int
++ estadoBordado(idBordado: int, estado: int): str
+---
+
+Bordado
+---
+- id: int
+- pontos: str[][]
+- historico: ArrayList<str>
+---
++ Bordado(id: int, altura: int, largura: int)
++ getId(): int
++ contaProcessamentos(): int
++ estadoBordado(estado: int): str
++ toString(): str
++ hashCode(): int
++ equals(obj: Object): boolean
+---
+
+Robo <Abstract>
+---
+- id: str
+---
++ Robo(id: int)
++ getId(): str
++ getPeso(): int // Métodos abstratos?
++ getCusto(): double
++ toString(): str // O que tem aqui?
++ hashCode(): int
++ equals(obj: Object): boolean
+---
+
+RoboLimpador
+extends Robo <Abstract>
+---
+---
++ RoboLimpador(id: str)
++ getPeso(): int
++ getCusto(): double
+---
+
+RoboBorda
+extends Robo <Abstract>
+---
+---
++ RoboBorda(id: str)
++ getPeso(): int
++ getCusto(): double
+---
+
+RoboRetangulo
+extends Robo <Abstract>
+---
+- coordenadasRetangulo: int[]
+---
++ RoboRetangulo(x1: int, y1: int, x2: int, y2: int, id: str)
++ getPeso(): int
++ getCusto(): double
+---
+
+RoboPonto
+extends Robo <Abstract>
+---
+- coordenadasPonto: int[]
+---
++ RoboPonto(x: int, y: int, id: str)
++ getPeso(): int
++ getCusto(): double
+---
