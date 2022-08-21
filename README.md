@@ -8,5 +8,5 @@ Repositório contendo implementações de atividades que foram desenvolvidas ao 
 - [Programação I e Laboratório de Programação I](2021.1)
 
 ### [2021.2](2021.2)
-- [Programação II](2021.2)
+- [Programação II](2021.2/P2)
 - [Laboratório de Programação II](2021.2/LP2)
