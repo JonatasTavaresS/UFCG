@@ -10,3 +10,6 @@ Repositório contendo implementações de atividades que foram desenvolvidas ao 
 ### [2021.2](2021.2)
 - [Programação II](2021.2/P2)
 - [Laboratório de Programação II](2021.2/LP2)
+
+### [2022.1](2022.1)
+- [Estruturas de Dados e Algoritmos](2022.1/EDA)
