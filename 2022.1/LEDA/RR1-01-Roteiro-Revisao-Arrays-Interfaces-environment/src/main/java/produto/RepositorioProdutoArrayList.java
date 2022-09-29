@@ -1,6 +1,7 @@
 package produto;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * Classe que representa um repositório de produtos usando ArrayList como
@@ -41,7 +42,13 @@ public class RepositorioProdutoArrayList {
 	 */
 	private int procurarIndice(int codigo) {
 		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// throw new UnsupportedOperationException("Not implemented yet!");
+		for (int i = 0; i < this.produtos.size(); i++) {
+			if (this.produtos.get(i).getCodigo() == codigo) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
@@ -84,6 +91,7 @@ public class RepositorioProdutoArrayList {
 				return;
 			}
 		}
+		throw new NoSuchElementException("Produto não existente");
 	}
 
 	/**
@@ -95,7 +103,12 @@ public class RepositorioProdutoArrayList {
 	 */
 	public void remover(int codigo) {
 		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// throw new UnsupportedOperationException("Not implemented yet!");
+		if (this.existe(codigo)) {
+			this.produtos.remove(this.procurarIndice(codigo));
+			return;
+		}
+		throw new NoSuchElementException("Produto não existente");
 	}
 
 	/**
@@ -107,6 +120,12 @@ public class RepositorioProdutoArrayList {
 	 */
 	public Produto procurar(int codigo) {
 		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// throw new UnsupportedOperationException("Not implemented yet!");
+		for (Produto p : this.produtos) {
+			if (p.getCodigo() == codigo) {
+				return p;
+			}
+		}
+		throw new NoSuchElementException("Produto não existente");
 	}
 }
