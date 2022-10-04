@@ -126,6 +126,5 @@ public class RepositorioProdutoArrayList {
 				return p;
 			}
 		}
-		throw new NoSuchElementException("Produto não existente");
-	}
+		return null;
 }
