@@ -16,6 +16,8 @@ public class AnaliseAssintotica {
         System.out.println(eh_primo(15));
         System.out.println(tem_repetido(new int[] { 1, 13, 3, 4, 5, 1 }));
         System.out.println(tem_repetido(new int[] { 1, 13, 3, 4, 5, 2 }));
+        System.out.println(vetorCircular(new int[] { 4, 5, 6, 1 }, 6));
+        System.out.println(vetorCircular(new int[] { 3, 4, 2 }, 8));
     }
 
     public static void troca_vizinhos(int[] v) {
@@ -64,5 +66,18 @@ public class AnaliseAssintotica {
             }
         }
         return false;
+    }
+
+    public static String vetorCircular(int[] array, int quantidadeElementos) {
+        String saida = "";
+        int j = 0;
+        for (int i = 0; i < quantidadeElementos; i++) {
+            saida += " " + array[j];
+            j++;
+            if (j == array.length) {
+                j = 0;
+            }
+        }
+        return saida.trim();
     }
 }
