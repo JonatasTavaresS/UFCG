@@ -21,8 +21,8 @@ public class Vetor<T extends Comparable<T>> {
 	private int indice;
 
 	// O Comparators a serem utilizados
-	private Comparator comparadorMaximo;
-	private Comparator comparadorMinimo;
+	private Comparator<T> comparadorMaximo;
+	private Comparator<T> comparadorMinimo;
 
 	public Vetor(int tamanho) {
 		super();
@@ -31,11 +31,11 @@ public class Vetor<T extends Comparable<T>> {
 		this.arrayInterno = (T[]) new Comparable[tamanho];
 	}
 
-	public void setComparadorMaximo(Comparator comparadorMaximo) {
+	public void setComparadorMaximo(Comparator<T> comparadorMaximo) {
 		this.comparadorMaximo = comparadorMaximo;
 	}
 
-	public void setComparadorMinimo(Comparator comparadorMinimo) {
+	public void setComparadorMinimo(Comparator<T> comparadorMinimo) {
 		this.comparadorMinimo = comparadorMinimo;
 	}
 
@@ -51,6 +51,7 @@ public class Vetor<T extends Comparable<T>> {
 	public T remover(T o) {
 		for (int i = 0; i < this.arrayInterno.length; i++) {
 			if (this.arrayInterno[i].equals(o)) {
+				indice--;
 				return this.arrayInterno[i] = null;
 			}
 		}
@@ -59,8 +60,11 @@ public class Vetor<T extends Comparable<T>> {
 
 	// Procura um elemento no vetor
 	public T procurar(T o) {
+		if (o == null) {
+			return null;
+		}
 		for (T t : this.arrayInterno) {
-			if (t.equals(o)) {
+			if (o.equals(t)) {
 				return t;
 			}
 		}
@@ -78,5 +82,47 @@ public class Vetor<T extends Comparable<T>> {
 	// Diz se o vetor está cheio
 	public boolean isCheio() {
 		return this.indice == this.tamanho - 1;
+	}
+
+	public T maximo() {
+		T result = null;
+		if (!isVazio()) {
+			result = arrayInterno[0];
+			for (int i = 0; i <= indice; i++) {
+				if (comparadorMaximo.compare(result, arrayInterno[i]) < 0) {
+					result = arrayInterno[i];
+				}
+			}
+		}
+		return result;
+	}
+
+	public T minimo() {
+		T result = null;
+		if (!isVazio()) {
+			result = arrayInterno[0];
+			for (int i = 0; i <= indice; i++) {
+				if (comparadorMinimo.compare(result, arrayInterno[i]) < 0) {
+					result = arrayInterno[i];
+				}
+			}
+		}
+		return result;
+	}
+}
+
+class ComparadorMaximo implements Comparator<Aluno> {
+
+	@Override
+	public int compare(Aluno o1, Aluno o2) {
+		return (int) (o1.getMedia() - o2.getMedia());
+	}
+}
+
+class ComparadorMinimo implements Comparator<Aluno> {
+
+	@Override
+	public int compare(Aluno o1, Aluno o2) {
+		return (int) (o2.getMedia() - o1.getMedia());
 	}
 }
