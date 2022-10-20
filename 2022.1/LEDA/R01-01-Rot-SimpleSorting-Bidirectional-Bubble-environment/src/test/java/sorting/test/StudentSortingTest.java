@@ -8,7 +8,12 @@ import org.junit.Test;
 
 import sorting.AbstractSorting;
 import sorting.simpleSorting.*;
+import sorting.variationsOfBubblesort.*;
+import sorting.variationsOfSelectionsort.*;
 
+/**
+ * @author Jônatas Tavares dos Santos - 121110769
+ */
 public class StudentSortingTest {
 
 	private Integer[] vetorTamPar;
@@ -39,7 +44,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new SelectionSort<Integer>();
+		this.implementation = new RecursiveBubbleSort<Integer>();
 		//Assert.fail("Implementation not provided");
 	}
 
