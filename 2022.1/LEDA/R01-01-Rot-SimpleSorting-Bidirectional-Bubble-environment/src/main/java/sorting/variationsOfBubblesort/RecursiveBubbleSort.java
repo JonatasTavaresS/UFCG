@@ -3,7 +3,10 @@ package sorting.variationsOfBubblesort;
 import sorting.AbstractSorting;
 import util.Util;
 
-	public class RecursiveBubbleSort<T extends Comparable<T>> extends
+/**
+ * @author Jônatas Tavares dos Santos - 121110769
+ */
+public class RecursiveBubbleSort<T extends Comparable<T>> extends
 		AbstractSorting<T> {
 
 	/**
@@ -19,14 +22,11 @@ import util.Util;
 		if (leftIndex == rightIndex + 1) {
 			return;
 		}
-		boolean swapped = false;
-		if (array[leftIndex].compareTo(array[leftIndex + 1]) > 0) {
-			Util.swap(array, leftIndex, leftIndex + 1);
-			swapped = true;
-
+		for (int i = leftIndex; i < rightIndex; i++) {
+			if (array[i].compareTo(array[i + 1]) > 0) {
+				Util.swap(array, i, i + 1);
+			}
 		}
-		sort(array, leftIndex + 1, rightIndex);
-		return;
+		sort(array, leftIndex, rightIndex - 1);
 	}
-
 }

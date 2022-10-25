@@ -42,10 +42,12 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
-		// null
-		this.implementation = new RecursiveBubbleSort<Integer>();
-		//Assert.fail("Implementation not provided");
+		this.implementation = new BubbleSort<Integer>();
+		// this.implementation = new InsertionSort<Integer>();
+		// this.implementation = new SelectionSort<Integer>();
+		// this.implementation = new BidirectionalBubbleSort<Integer>();
+		// this.implementation = new RecursiveBubbleSort<Integer>();
+		// this.implementation = new RecursiveSelectionSort<Integer>();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -72,8 +74,8 @@ public class StudentSortingTest {
 
 	public void genericTest(Integer[] array) {
 		Integer[] copy1 = {};
-		if(array.length > 0){
-			copy1 = Arrays.copyOf(array, array.length);			
+		if (array.length > 0) {
+			copy1 = Arrays.copyOf(array, array.length);
 		}
 		implementation.sort(array);
 		Arrays.sort(copy1);
@@ -112,4 +114,39 @@ public class StudentSortingTest {
 	 * SEGUIR A ESTRUTURA DOS MÉTODOS DE TESTE ACIMA DESCRITOS, ORDENANDO APENAS
 	 * UMA PARTE DO ARRAY.
 	 */
+
+	@Test
+	public void testSort06() {
+		genericTest(new Integer[] { 0, 1, 2, 3, 4, 5, 6 });
+	}
+
+	@Test
+	public void testSort07() {
+		genericTest(new Integer[] { 1, 2, 3, 4, 5, 6, 0 });
+	}
+
+	@Test
+	public void testSort08() {
+		genericTest(new Integer[] { 6, 0, 1, 2, 3, 4, 5 });
+	}
+
+	@Test
+	public void testSort09() {
+		genericTest(new Integer[] { 1, 2, 3, 0, 4, 5, 6 });
+	}
+
+	@Test
+	public void testSort10() {
+		genericTest(new Integer[] { 0, 1, 2, 6, 3, 4, 5 });
+	}
+
+	@Test
+	public void testSort11() {
+		genericTest(new Integer[] { 0 });
+	}
+
+	@Test
+	public void testSort12() {
+		genericTest(new Integer[] { 6, 5, 4, 3, 2, 1, 0 });
+	}
 }
