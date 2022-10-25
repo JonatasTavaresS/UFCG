@@ -60,25 +60,5 @@ public class QuickSortMedianOfThree<T extends Comparable<T>> extends
 			Util.swap(array, rightIndex, middleIndex);
 		}
 		return middleIndex;
-		/*
-		 * T[] a = (T[]) new Comparable[] { array[leftIndex], array[middleIndex],
-		 * array[rightIndex] };
-		 * if (a[2].compareTo(a[0]) < 0) {
-		 * Util.swap(a, 2, 0);
-		 * }
-		 * if (a[1].compareTo(a[0]) < 0) {
-		 * Util.swap(a, 1, 0);
-		 * }
-		 * if (a[2].compareTo(array[1]) < 0) {
-		 * Util.swap(a, 2, 1);
-		 * }
-		 * if (a[1].equals(array[leftIndex])) {
-		 * return leftIndex;
-		 * } else if (a[1].equals(array[middleIndex])) {
-		 * return middleIndex;
-		 * } else {
-		 * return rightIndex;
-		 * }
-		 */
 	}
 }
