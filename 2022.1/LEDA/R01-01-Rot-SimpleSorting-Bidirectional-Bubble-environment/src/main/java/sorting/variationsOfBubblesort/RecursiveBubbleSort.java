@@ -19,7 +19,7 @@ public class RecursiveBubbleSort<T extends Comparable<T>> extends
 	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if (leftIndex >= rightIndex) {
+		if (leftIndex >= rightIndex || rightIndex >= array.length) {
 			return;
 		}
 		for (int i = leftIndex; i < rightIndex; i++) {

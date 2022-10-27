@@ -1,5 +1,7 @@
 package sorting.test;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.Arrays;
 
 import org.junit.Assert;
@@ -148,5 +150,69 @@ public class StudentSortingTest {
 	@Test
 	public void testSort12() {
 		genericTest(new Integer[] { 6, 5, 4, 3, 2, 1, 0 });
+	}
+
+	// Outros
+	@Test
+	public void testSort13() {
+		Integer[] array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
+		this.implementation.sort(array, 3, 5);
+		Assert.assertArrayEquals(new Integer[] { 30, 28, 7, 11, 26, 29, 4, 22, 23, 31 }, array);
+	}
+
+	@Test
+	public void testSort14() {
+		Integer[] array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
+		this.implementation.sort(array, 3, 3);
+		Assert.assertArrayEquals(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 }, array);
+	}
+
+	@Test
+	public void testSort15() {
+		Integer[] array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
+		this.implementation.sort(array, 5, 3);
+		Assert.assertArrayEquals(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 }, array);
+	}
+
+	@Test
+	public void testSort16() {
+		Integer[] array = new Integer[] {};
+		this.implementation.sort(array, 3, 4);
+		Assert.assertArrayEquals(new Integer[] {}, array);
+	}
+
+	@Test
+	public void testSort17() {
+		Integer[] array = new Integer[] {};
+		this.implementation.sort(array, 0, 0);
+		Assert.assertArrayEquals(new Integer[] {}, array);
+	}
+
+	@Test
+	public void testSort18() {
+		Integer[] array = new Integer[] { 30 };
+		this.implementation.sort(array, 0, 1);
+		Assert.assertArrayEquals(new Integer[] { 30 }, array);
+	}
+
+	@Test
+	public void testSort19() {
+		Integer[] array = new Integer[] { 30, 28 };
+		this.implementation.sort(array, 0, 1);
+		Assert.assertArrayEquals(new Integer[] { 28, 30 }, array);
+	}
+
+	@Test
+	public void testSort20() {
+		Integer[] array = new Integer[] { 30, 28 };
+		this.implementation.sort(array, 0, 0);
+		Assert.assertArrayEquals(new Integer[] { 30, 28 }, array);
+	}
+
+	@Test
+	public void testSort21() {
+		Integer[] array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
+		this.implementation.sort(array, 5, 7);
+		Assert.assertArrayEquals(new Integer[] { 30, 28, 7, 29, 11, 4, 22, 26, 23, 31 }, array);
 	}
 }
