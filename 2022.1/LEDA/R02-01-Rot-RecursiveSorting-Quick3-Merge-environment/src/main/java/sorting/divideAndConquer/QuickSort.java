@@ -17,6 +17,9 @@ public class QuickSort<T extends Comparable<T>> extends AbstractSorting<T> {
 
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
+		if (leftIndex >= rightIndex || rightIndex >= array.length) {
+			return;
+		}
 		if (leftIndex < rightIndex) {
 			int pivotIndex = this.partition(array, leftIndex, rightIndex);
 			sort(array, leftIndex, pivotIndex - 1);
