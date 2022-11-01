@@ -23,7 +23,7 @@ public class CountingSort extends AbstractSorting<Integer> {
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
 		// Verificação de entradas inválidas
-		if (leftIndex < 0 || rightIndex >= array.length || leftIndex >= rightIndex) {
+		if (array == null || leftIndex < 0 || leftIndex >= rightIndex || rightIndex >= array.length) {
 			return;
 		}
 		int[] C = new int[this.maximum(array, leftIndex, rightIndex) + 1];

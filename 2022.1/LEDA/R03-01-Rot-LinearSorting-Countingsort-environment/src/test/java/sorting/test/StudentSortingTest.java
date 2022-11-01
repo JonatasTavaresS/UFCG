@@ -37,8 +37,8 @@ public class StudentSortingTest {
 	 * do aluno
 	 */
 	private void getImplementation() {
-		// this.implementation = new CountingSort();
-		this.implementation = new ExtendedCountingSort();
+		this.implementation = new CountingSort();
+		// this.implementation = new ExtendedCountingSort();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -179,29 +179,39 @@ public class StudentSortingTest {
 		Assert.assertArrayEquals(new Integer[] {}, vetorVazio);
 	}
 
+	/**
+	 * Teste com array nulo.
+	 */
+	@Test
+	public void testSort14() {
+		Integer[] array = null;
+		this.implementation.sort(array, 0, 0);
+		Assert.assertArrayEquals(null, array);
+	}
+
 	// Extended Counting Sort
 
 	/**
 	 * Testes com valores negativos e positivos para o ExtendedCountingSort.
 	 */
-	@Test
-	public void testSort14() {
+	// @Test
+	public void testSort16() {
 		genericTest(new Integer[] { 30, 28, -7, 28, -11, 26, 4, 22, 23, 0 });
 	}
 
 	/**
 	 * Testes com valores negativos para o ExtendedCountingSort.
 	 */
-	@Test
-	public void testSort15() {
+	// @Test
+	public void testSort17() {
 		genericTest(new Integer[] { -30, -28, -7, -29, -11, -26, -4, -22, -23, -31 });
 	}
 
 	/**
 	 * Testes com valores negativos para o ExtendedCountingSort com intervalos.
 	 */
-	@Test
-	public void testSort16() {
+	// @Test
+	public void testSort18() {
 		Integer[] vetorNegativos = new Integer[] { -30, -28, -7, -29, -11, -26, -4, -22, -23, -31 };
 		this.implementation.sort(vetorNegativos, 3, 7);
 		Assert.assertArrayEquals(new Integer[] { -30, -28, -7, -29, -26, -22, -11, -4, -23, -31 }, vetorNegativos);
