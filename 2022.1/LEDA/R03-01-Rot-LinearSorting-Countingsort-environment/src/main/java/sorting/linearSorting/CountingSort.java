@@ -22,28 +22,27 @@ public class CountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		// Verificação de entradas inválidas
-		if (array == null || leftIndex < 0 || leftIndex >= rightIndex || rightIndex >= array.length) {
-			return;
-		}
-		int[] C = new int[this.maximum(array, leftIndex, rightIndex) + 1];
-		// Frequência
-		for (int i = leftIndex; i < rightIndex + 1; i++) {
-			C[array[i]]++;
-		}
-		// Cumulativa
-		for (int i = 1; i < C.length; i++) {
-			C[i] += C[i - 1];
-		}
-		// Array auxiliar com tamanho do intervalo
-		int[] B = new int[rightIndex - leftIndex + 1];
-		for (int i = B.length - 1; i >= 0; i--) {
-			B[C[array[i + leftIndex]] - 1] = array[i + leftIndex];
-			C[array[i + leftIndex]]--;
-		}
-		// Cópia do intervalo ordenado para o array original
-		for (int i = 0; i < B.length; i++) {
-			array[i + leftIndex] = B[i];
+		// Verificação de entradas válidas
+		if (array != null && leftIndex >= 0 && leftIndex < rightIndex && rightIndex < array.length) {
+			int[] C = new int[this.maximum(array, leftIndex, rightIndex) + 1];
+			// Frequência
+			for (int i = leftIndex; i < rightIndex + 1; i++) {
+				C[array[i]]++;
+			}
+			// Cumulativa
+			for (int i = 1; i < C.length; i++) {
+				C[i] += C[i - 1];
+			}
+			// Array auxiliar com tamanho do intervalo
+			int[] B = new int[rightIndex - leftIndex + 1];
+			for (int i = rightIndex; i >= leftIndex; i--) {
+				B[C[array[i]] - 1] = array[i];
+				C[array[i]]--;
+			}
+			// Cópia do intervalo ordenado para o array original
+			for (int i = 0; i < B.length; i++) {
+				array[i + leftIndex] = B[i];
+			}
 		}
 	}
 

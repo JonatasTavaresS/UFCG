@@ -14,30 +14,30 @@ public class ExtendedCountingSort extends AbstractSorting<Integer> {
 
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		// Verificação de entradas inválidas
-		if (array == null || leftIndex < 0 || leftIndex >= rightIndex || rightIndex >= array.length) {
-			return;
-		}
-		int maximum = this.maximum(array, leftIndex, rightIndex);
-		int minimum = this.minimum(array, leftIndex, rightIndex);
-		int[] C = new int[maximum - minimum + 1];
-		// Frequência
-		for (int i = leftIndex; i < rightIndex + 1; i++) {
-			C[array[i] - minimum]++;
-		}
-		// Cumulativa
-		for (int i = 1; i < C.length; i++) {
-			C[i] += C[i - 1];
-		}
-		// Array auxiliar com tamanho do intervalo
-		int[] B = new int[rightIndex - leftIndex + 1];
-		for (int i = B.length - 1; i >= 0; i--) {
-			B[C[array[i + leftIndex] - minimum] - 1] = array[i + leftIndex];
-			C[array[i + leftIndex] - minimum]--;
-		}
-		// Cópia do intervalo ordenado para o array original
-		for (int i = 0; i < B.length; i++) {
-			array[i + leftIndex] = B[i];
+		// Verificação de entradas válidas
+		if (array != null && leftIndex >= 0 && leftIndex < rightIndex && rightIndex < array.length) {
+			// Valores minimo e máximo
+			int maximum = this.maximum(array, leftIndex, rightIndex);
+			int minimum = this.minimum(array, leftIndex, rightIndex);
+			int[] C = new int[maximum - minimum + 1];
+			// Frequência
+			for (int i = leftIndex; i < rightIndex + 1; i++) {
+				C[array[i] - minimum]++;
+			}
+			// Cumulativa
+			for (int i = 1; i < C.length; i++) {
+				C[i] += C[i - 1];
+			}
+			// Array auxiliar com tamanho do intervalo
+			int[] B = new int[rightIndex - leftIndex + 1];
+			for (int i = rightIndex; i >= leftIndex; i--) {
+				B[C[array[i] - minimum] - 1] = array[i];
+				C[array[i] - minimum]--;
+			}
+			// Cópia do intervalo ordenado para o array original
+			for (int i = 0; i < B.length; i++) {
+				array[i + leftIndex] = B[i];
+			}
 		}
 	}
 
