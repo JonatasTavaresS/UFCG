@@ -1,5 +1,6 @@
 package orderStatistic;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -10,16 +11,28 @@ public class KLargestOrderStatisticsImplTest {
 
     private KLargestOrderStatisticsImpl<Integer> implementation;
     private Integer[] array;
+    private Integer[] arrayVazio;
 
     @Before
     public void setUp() {
         this.implementation = new KLargestOrderStatisticsImpl<>();
         this.array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
+        this.arrayVazio = new Integer[] {};
     }
 
     @Test
-    public void testGetKLargest() {
+    public void testGetKLargest01() {
+        assertArrayEquals(new Integer[] { 31 }, this.implementation.getKLargest(this.array, 1));
+    }
 
+    @Test
+    public void testGetKLargest02() {
+        assertArrayEquals(new Integer[] { 30, 31 }, this.implementation.getKLargest(this.array, 2));
+    }
+
+    @Test
+    public void testGetKLargest03() {
+        assertArrayEquals(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 }, this.implementation.getKLargest(this.array, 10));
     }
 
     @Test
