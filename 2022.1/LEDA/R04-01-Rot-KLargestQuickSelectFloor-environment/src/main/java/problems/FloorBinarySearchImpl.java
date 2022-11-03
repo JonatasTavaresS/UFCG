@@ -34,10 +34,7 @@ public class FloorBinarySearchImpl implements Floor {
 
 	private void sort(Integer[] array, int leftIndex, int rightIndex) {
 		// Verificação de entradas inválidas
-		if (array == null || leftIndex < 0 || leftIndex >= rightIndex || rightIndex >= array.length) {
-			return;
-		}
-		if (leftIndex < rightIndex) {
+		if (array != null && leftIndex >= 0 && leftIndex < rightIndex && rightIndex < array.length) {
 			int pivotIndex = this.partition(array, leftIndex, rightIndex);
 			sort(array, leftIndex, pivotIndex - 1);
 			sort(array, pivotIndex + 1, rightIndex);
