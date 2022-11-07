@@ -1,7 +1,5 @@
 package orderStatistic;
 
-import java.util.Arrays;
-
 import util.Util;
 
 /**
@@ -32,7 +30,6 @@ import util.Util;
 public class KLargestOrderStatisticsImpl<T extends Comparable<T>> implements KLargest<T> {
 
 	@Override
-	// @SuppressWarnings("unchecked")
 	public T[] getKLargest(T[] array, int k) {
 		if (array != null && array.length > 0 && k >= 1 && k <= array.length) {
 			orderStatistics(array, array.length - k);

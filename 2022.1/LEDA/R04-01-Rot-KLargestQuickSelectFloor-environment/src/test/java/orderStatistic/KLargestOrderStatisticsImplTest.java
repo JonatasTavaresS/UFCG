@@ -2,7 +2,10 @@ package orderStatistic;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,13 +14,11 @@ public class KLargestOrderStatisticsImplTest {
 
     private KLargestOrderStatisticsImpl<Integer> implementation;
     private Integer[] array;
-    private Integer[] arrayVazio;
 
     @Before
     public void setUp() {
         this.implementation = new KLargestOrderStatisticsImpl<>();
         this.array = new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 };
-        this.arrayVazio = new Integer[] {};
     }
 
     @Test
@@ -32,7 +33,28 @@ public class KLargestOrderStatisticsImplTest {
 
     @Test
     public void testGetKLargest03() {
-        assertArrayEquals(new Integer[] { 30, 28, 7, 29, 11, 26, 4, 22, 23, 31 }, this.implementation.getKLargest(this.array, 10));
+        assertArrayEquals(new Integer[] { 29, 30, 31 }, this.implementation.getKLargest(this.array, 3));
+    }
+
+    @Test
+    public void testGetKLargest04() {
+        assertFalse(
+                Arrays.deepEquals(new Integer[] { 28, 29, 30, 31 }, this.implementation.getKLargest(this.array, 4)));
+    }
+
+    @Test
+    public void testGetKLargest05() {
+        assertArrayEquals(new Integer[] {}, this.implementation.getKLargest(this.array, 11));
+    }
+
+    @Test
+    public void testGetKLargest06() {
+        assertArrayEquals(new Integer[] {}, this.implementation.getKLargest(new Integer[] {}, 1));
+    }
+
+    @Test
+    public void testGetKLargest07() {
+        assertArrayEquals(new Integer[] {}, this.implementation.getKLargest(null, 1));
     }
 
     @Test
