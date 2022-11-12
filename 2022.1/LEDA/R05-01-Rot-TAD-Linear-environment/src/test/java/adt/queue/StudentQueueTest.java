@@ -1,10 +1,7 @@
 package adt.queue;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,16 +28,17 @@ public class StudentQueueTest {
 	}
 
 	private void getImplementations() {
-		// TODO O aluno deve ajustar aqui para instanciar sua implementação
-		queue1 = new QueueImpl<>(4);
-		queue2 = new QueueImpl<>(2);
-		queue3 = new QueueImpl<>(0);
+		// O aluno deve ajustar aqui para instanciar sua implementação
+		queue1 = new CircularQueue<>(4);
+		queue2 = new CircularQueue<>(2);
+		queue3 = new CircularQueue<>(0);
 	}
 
 	// MÉTODOS DE TESTE
 	@Test
 	public void testHead() {
-		assertEquals(new Integer(1), queue1.head());
+		assertEquals((Integer) 1, queue1.head());
+		assertNull(queue3.head());
 	}
 
 	@Test
@@ -52,38 +50,36 @@ public class StudentQueueTest {
 	@Test
 	public void testIsFull() {
 		assertFalse(queue1.isFull());
+		assertTrue(queue2.isFull());
 	}
 
 	@Test
 	public void testEnqueue() {
 		try {
-			queue1.enqueue(new Integer(5));
+			queue1.enqueue((Integer) 5);
 		} catch (QueueOverflowException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = QueueOverflowException.class)
 	public void testEnqueueComErro() throws QueueOverflowException {
-		queue1.enqueue(new Integer(5)); // vai depender do tamanho que a fila
-										// foi iniciada!!!
+		queue2.enqueue((Integer) 5);
 	}
 
 	@Test
 	public void testDequeue() {
 		try {
-			assertEquals(new Integer(1), queue1.dequeue());
+			assertEquals((Integer) 1, queue1.dequeue());
 		} catch (QueueUnderflowException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = QueueUnderflowException.class)
 	public void testDequeueComErro() throws QueueUnderflowException {
-		assertEquals(new Integer(1), queue1.dequeue()); // vai depender do
-														// tamanho que a fial
-														// foi iniciada!!!
+		assertEquals((Integer) 1, queue2.dequeue());
+		assertEquals((Integer) 2, queue2.dequeue());
+		queue2.dequeue();
 	}
 }
