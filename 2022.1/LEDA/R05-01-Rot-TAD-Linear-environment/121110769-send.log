@@ -17,3 +17,13 @@
   <level>FINE</level>
   <message>File 121110769-JONATAS TAVARES DOS SANTOS.zip was received. It was sent by JONATAS TAVARES DOS SANTOS from IP 192.168.56.1 at 12-11-2022 20*49*46</message>
 </record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-11-16T17:20:19.024-0300</date>
+  <logger>JONATAS TAVARES DOS SANTOS</logger>
+  <level>FINE</level>
+  <message>File 121110769-JONATAS TAVARES DOS SANTOS.zip was received. It was sent by JONATAS TAVARES DOS SANTOS from IP 150.165.74.104 at 16-11-2022 17*20*19</message>
+</record>
