@@ -20,9 +20,12 @@ public class CircularQueue<T> implements Queue<T> {
 		if (this.isFull())
 			throw new QueueOverflowException();
 		if (element != null) {
-			if (this.isEmpty())
-				this.head++;
-			this.tail = (this.tail + 1) % this.array.length;
+			if (this.isEmpty()) {
+				this.head = 0;
+				this.tail = 0;
+			} else {
+				this.tail = (this.tail + 1) % this.array.length;
+			}
 			this.array[this.tail] = element;
 			this.elements++;
 		}
@@ -33,7 +36,12 @@ public class CircularQueue<T> implements Queue<T> {
 		if (this.isEmpty())
 			throw new QueueUnderflowException();
 		T temp = this.array[this.head];
-		this.head = (this.head + 1) % this.array.length;
+		if (this.head == this.tail) {
+			this.head = -1;
+			this.tail = -1;
+		} else {
+			this.head = (this.head + 1) % array.length;
+		}
 		this.elements--;
 		return temp;
 	}

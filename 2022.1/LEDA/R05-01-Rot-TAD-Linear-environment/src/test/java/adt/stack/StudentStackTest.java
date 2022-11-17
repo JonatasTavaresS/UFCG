@@ -79,4 +79,5 @@ public class StudentStackTest {
 		assertEquals((Integer) 1, stack2.pop());
 		stack2.pop();
 	}
+
 }

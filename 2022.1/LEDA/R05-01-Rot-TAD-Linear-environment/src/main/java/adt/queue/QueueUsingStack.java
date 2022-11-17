@@ -20,58 +20,42 @@ public class QueueUsingStack<T> implements Queue<T> {
 		if (this.isFull())
 			throw new QueueOverflowException();
 		try {
-			if (element != null)
+			if (element != null) {
+				while (!this.stack1.isEmpty())
+					this.stack2.push(this.stack1.pop());
 				this.stack1.push(element);
-		} catch (StackOverflowException e) {
-			throw new QueueOverflowException();
+				while (!this.stack2.isEmpty())
+					this.stack1.push(this.stack2.pop());
+			}
+		} catch (StackOverflowException | StackUnderflowException e) {
 		}
 	}
 
 	@Override
 	public T dequeue() throws QueueUnderflowException {
-		T dequeue = null;
-		if (this.isEmpty())
-			throw new QueueUnderflowException();
 		try {
-			if (this.stack2.isEmpty()) {
-				while (!this.stack1.isEmpty()) {
-					dequeue = this.stack1.pop();
-					this.stack2.push(dequeue);
-				}
-			}
-			dequeue = this.stack2.top();
-			this.stack2.pop();
-		} catch (StackUnderflowException | StackOverflowException e) {
-
+			return this.stack1.pop();
+		} catch (StackUnderflowException e) {
+			throw new QueueUnderflowException();
 		}
-		return dequeue;
 	}
 
 	@Override
 	public T head() {
 		T head = null;
-		if (this.stack2.isEmpty()) {
-			try {
-				while (!this.stack1.isEmpty()) {
-					this.stack2.push(this.stack1.top());
-					this.stack1.pop();
-				}
-				head = this.stack2.top();
-			} catch (StackOverflowException | StackUnderflowException e) {
-
-			}
-		}
+		if (!this.isEmpty())
+			head = this.stack1.top();
 		return head;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this.stack1.isEmpty() && this.stack2.isEmpty();
+		return this.stack1.isEmpty();
 	}
 
 	@Override
 	public boolean isFull() {
-		return this.stack1.isFull() || this.stack2.isFull();
+		return this.stack1.isFull();
 	}
 
 }

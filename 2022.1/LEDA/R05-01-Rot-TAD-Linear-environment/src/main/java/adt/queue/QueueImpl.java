@@ -49,10 +49,10 @@ public class QueueImpl<T> implements Queue<T> {
 	public T dequeue() throws QueueUnderflowException {
 		if (this.isEmpty())
 			throw new QueueUnderflowException();
-		T result = this.array[0];
+		T dequeue = this.array[0];
 		this.shiftLeft();
 		this.tail--;
-		return result;
+		return dequeue;
 	}
 
 }
