@@ -16,7 +16,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 			DoubleLinkedListNode<T> newHead = new DoubleLinkedListNode<T>(element,
 					(DoubleLinkedListNode<T>) this.getHead(), new DoubleLinkedListNode<>());
 			((DoubleLinkedListNode<T>) this.getHead()).setPrevious(newHead);
-			if (this.head.isNIL()) {
+			if (this.getHead().isNIL()) {
 				this.setLast(newHead);
 			}
 			this.setHead(newHead);
@@ -25,9 +25,9 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeFirst() {
-		if (!this.isEmpty()) {
+		if (!this.getHead().isNIL()) {
 			this.setHead(this.getHead().getNext());
-			if (this.isEmpty()) {
+			if (this.getHead().isNIL()) {
 				this.setLast((DoubleLinkedListNode<T>) this.getHead());
 			} else {
 				((DoubleLinkedListNode<T>) this.getHead()).setPrevious(new DoubleLinkedListNode<>());
@@ -37,8 +37,14 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void removeLast() {
-		this.setLast(this.getLast().getPrevious());
-		this.getLast().setNext(new DoubleLinkedListNode<>());
+		if (!this.getLast().isNIL()) {
+			this.setLast(this.getLast().getPrevious());
+			if (this.getLast().isNIL()) {
+				this.setHead(this.getLast());
+			} else {
+				this.getLast().setNext(new DoubleLinkedListNode<>());
+			}
+		}
 	}
 
 	@Override
@@ -77,7 +83,7 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	@Override
 	public void remove(T element) {
-		if (!this.isEmpty() && element != null) {
+		if (!this.isEmpty() || element != null) {
 			if (this.head.getData().equals(element)) {
 				this.removeFirst();
 			} else {
@@ -99,14 +105,6 @@ public class DoubleLinkedListImpl<T> extends SingleLinkedListImpl<T> implements
 
 	public void setLast(DoubleLinkedListNode<T> last) {
 		this.last = last;
-	}
-
-	private DoubleLinkedListNode<T> getFist() {
-		DoubleLinkedListNode<T> aux = this.getLast();
-		while (!aux.isNIL()) {
-			aux = aux.getPrevious();
-		}
-		return aux;
 	}
 
 }

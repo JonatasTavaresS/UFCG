@@ -9,41 +9,75 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	}
 
-
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		boolean isEmpty = false;
+		if (this.getData() == null) {
+			isEmpty = true;
+		}
+		return isEmpty;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int size = 0;
+		if (!this.isEmpty()) {
+			size = 1 + this.getNext().size();
+		}
+		return size;
 	}
 
 	@Override
 	public T search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		T search = null;
+		if (!this.isEmpty() && element != null) {
+			if (this.getData().equals(element)) {
+				search = this.getData();
+			} else {
+				search = this.getNext().search(element);
+			}
+		}
+		return search;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (element != null) {
+			if (this.isEmpty()) {
+				this.setData(element);
+				this.setNext(new RecursiveSingleLinkedListImpl<T>());
+			} else {
+				this.getNext().insert(element);
+			}
+		}
 	}
 
 	@Override
 	public void remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!this.isEmpty() && element != null) {
+			if (this.getData().equals(element)) {
+				this.setData(this.getNext().getData());
+				this.setNext(this.getNext().getNext());
+			} else {
+				this.getNext().remove(element);
+			}
+		}
 	}
 
 	@Override
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		// FIXME
+		//T[] toArray = new java.util.LinkedList<T>();
+		//toArray(toArray, this);
+		//return (T[]) toArray;
+		return null;
+	}
+
+	private void toArray(java.util.LinkedList<T> list, RecursiveSingleLinkedListImpl<T> node) {
+		if (!node.isEmpty()) {
+			list.add(node.getData());
+			toArray(list, node.getNext());
+		}
 	}
 
 	public T getData() {
