@@ -19,8 +19,8 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		if (!this.isEmpty()) {
 			SingleLinkedListNode<T> aux = this.getHead();
 			while (!aux.isNIL()) {
-				aux = aux.getNext();
 				size++;
+				aux = aux.getNext();
 			}
 		}
 		return size;
@@ -28,41 +28,46 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public T search(T element) {
-		T search = null;
+		SingleLinkedListNode<T> auxHead = this.getHead();
 		if (!this.isEmpty() && element != null) {
-			SingleLinkedListNode<T> aux = this.getHead();
-			while (!aux.isNIL() && !aux.getData().equals(element)) {
-				aux = aux.getNext();
-			}
-			if (!aux.isNIL()) {
-				search = aux.getData();
+			while (!auxHead.isNIL() && !auxHead.getData().equals(element)) {
+				auxHead = auxHead.getNext();
 			}
 		}
-		return search;
+		return auxHead.getData();
 	}
 
 	@Override
 	public void insert(T element) {
 		if (element != null) {
-			SingleLinkedListNode<T> aux = this.getHead();
-			while (!aux.isNIL()) {
-				aux = aux.getNext();
+			SingleLinkedListNode<T> auxHead = this.getHead();
+			if (this.isEmpty()) {
+				SingleLinkedListNode<T> newHead = new SingleLinkedListNode<>(element, this.getHead());
+				this.setHead(newHead);
+			} else {
+				while (!auxHead.isNIL()) {
+					auxHead = auxHead.getNext();
+				}
+				auxHead.setData(element);
+				auxHead.setNext(new SingleLinkedListNode<>());
 			}
-			aux.setData(element);
-			aux.setNext(new SingleLinkedListNode<>());
 		}
 	}
 
 	@Override
 	public void remove(T element) {
 		if (!this.isEmpty() && element != null) {
-			SingleLinkedListNode<T> aux = this.getHead();
-			while (!aux.isNIL() && !aux.getData().equals(element)) {
-				aux = aux.getNext();
-			}
-			if (!aux.isNIL()) {
-				aux.setData(aux.getNext().getData());
-				aux.setNext(aux.getNext().getNext());
+			if (this.getHead().getData().equals(element)) {
+				this.setHead(this.getHead().getNext());
+			} else {
+				SingleLinkedListNode<T> auxHead = this.getHead();
+				while (!auxHead.isNIL() && !auxHead.getData().equals(element)) {
+					auxHead = auxHead.getNext();
+				}
+				if (!auxHead.isNIL()) {
+					auxHead.setData(auxHead.getNext().getData());
+					auxHead.setNext(auxHead.getNext().getNext());
+				}
 			}
 		}
 	}
