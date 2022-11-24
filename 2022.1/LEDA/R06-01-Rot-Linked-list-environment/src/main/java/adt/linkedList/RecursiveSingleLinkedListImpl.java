@@ -64,19 +64,18 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T[] toArray() {
-		// FIXME
-		//T[] toArray = new java.util.LinkedList<T>();
-		//toArray(toArray, this);
-		//return (T[]) toArray;
-		return null;
+		T[] toArray = (T[]) new Comparable[this.size()];
+		toArray(toArray, this, 0);
+		return (T[]) toArray;
 	}
 
-	private void toArray(java.util.LinkedList<T> list, RecursiveSingleLinkedListImpl<T> node) {
+	private void toArray(T[] list, RecursiveSingleLinkedListImpl<T> node, int index) {
 		if (!node.isEmpty()) {
-			list.add(node.getData());
-			toArray(list, node.getNext());
+			list[index] = node.getData();
+			toArray(list, node.getNext(), index + 1);
 		}
 	}
 
