@@ -11,11 +11,7 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public boolean isEmpty() {
-		boolean isEmpty = false;
-		if (this.getData() == null) {
-			isEmpty = true;
-		}
-		return isEmpty;
+		return this.getData() == null;
 	}
 
 	@Override
@@ -68,14 +64,14 @@ public class RecursiveSingleLinkedListImpl<T> implements LinkedList<T> {
 	@Override
 	public T[] toArray() {
 		T[] toArray = (T[]) new Comparable[this.size()];
-		toArray(toArray, this, 0);
+		toArray(toArray, 0);
 		return (T[]) toArray;
 	}
 
-	private void toArray(T[] list, RecursiveSingleLinkedListImpl<T> node, int index) {
-		if (!node.isEmpty()) {
-			list[index] = node.getData();
-			toArray(list, node.getNext(), index + 1);
+	private void toArray(T[] list, int index) {
+		if (!this.isEmpty()) {
+			list[index] = this.getData();
+			this.getNext().toArray(list, index + 1);
 		}
 	}
 

@@ -12,23 +12,49 @@ public class RecursiveDoubleLinkedListImpl<T> extends
 	@Override
 	public void insertFirst(T element) {
 		if (element != null) {
-			RecursiveDoubleLinkedListImpl<T> newHead = new RecursiveDoubleLinkedListImpl<>();
-			newHead.setData(element);
-			newHead.setNext(this);
-			this.setPrevious(newHead);
+			if (this.isEmpty()) {
+				this.insert(element);
+			} else {
+				RecursiveDoubleLinkedListImpl<T> aux = new RecursiveDoubleLinkedListImpl<>();
+				aux.setData(this.getData());
+				aux.setNext(this.getNext());
+				aux.setPrevious(new RecursiveDoubleLinkedListImpl<>());
+				this.setData(element);
+				((RecursiveDoubleLinkedListImpl<T>) this.getNext()).setPrevious(aux);
+				this.setNext(aux);
+				aux.setPrevious(this);
+			}
 		}
 	}
 
 	@Override
 	public void removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!this.isEmpty()) {
+			if (this.getNext().isEmpty() && this.getPrevious().isEmpty()) {
+				this.setData(null);
+				this.setNext(null);
+				this.setPrevious(null);
+			} else {
+				this.setData(this.next.getData());
+				this.setNext(this.next.getNext());
+				((RecursiveDoubleLinkedListImpl<T>) this.getNext()).setPrevious(this);
+			}
+		}
 	}
 
 	@Override
 	public void removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if (!this.isEmpty()) {
+			if (this.getNext().isEmpty()) {
+				this.setData(null);
+				this.setNext(null);
+				if (this.getPrevious().isEmpty()) {
+					this.setPrevious(null);
+				}
+			} else {
+				((RecursiveDoubleLinkedListImpl<T>) this.getNext()).removeLast();
+			}
+		}
 	}
 
 	@Override

@@ -17,10 +17,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public int size() {
 		int size = 0;
 		if (!this.isEmpty()) {
-			SingleLinkedListNode<T> aux = this.getHead();
-			while (!aux.isNIL()) {
+			SingleLinkedListNode<T> auxHead = this.getHead();
+			while (!auxHead.isNIL()) {
 				size++;
-				aux = aux.getNext();
+				auxHead = auxHead.getNext();
 			}
 		}
 		return size;
@@ -28,13 +28,15 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public T search(T element) {
+		T search = null;
 		SingleLinkedListNode<T> auxHead = this.getHead();
 		if (!this.isEmpty() && element != null) {
 			while (!auxHead.isNIL() && !auxHead.getData().equals(element)) {
 				auxHead = auxHead.getNext();
 			}
+			search = auxHead.getData();
 		}
-		return auxHead.getData();
+		return search;
 	}
 
 	@Override
@@ -77,10 +79,10 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 	public T[] toArray() {
 		T[] array = (T[]) new Comparable[this.size()];
 		int i = 0;
-		SingleLinkedListNode<T> aux = this.getHead();
-		while (!aux.isNIL()) {
-			array[i++] = aux.getData();
-			aux = aux.getNext();
+		SingleLinkedListNode<T> auxHead = this.getHead();
+		while (!auxHead.isNIL()) {
+			array[i++] = auxHead.getData();
+			auxHead = auxHead.getNext();
 		}
 		return array;
 	}

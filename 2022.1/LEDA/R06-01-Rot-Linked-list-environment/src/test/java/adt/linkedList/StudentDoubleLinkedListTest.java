@@ -1,5 +1,7 @@
 package adt.linkedList;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,9 +25,9 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	}
 
 	private void getImplementations() {
-		lista1 = new DoubleLinkedListImpl<>();
-		lista2 = new DoubleLinkedListImpl<>();
-		lista3 = new DoubleLinkedListImpl<>();
+		lista1 = new RecursiveDoubleLinkedListImpl<>();
+		lista2 = new RecursiveDoubleLinkedListImpl<>();
+		lista3 = new RecursiveDoubleLinkedListImpl<>();
 	}
 
 	// Métodos de DoubleLinkedList
@@ -33,6 +35,7 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 	@Test
 	public void testInsertFirst() {
 		((DoubleLinkedList<Integer>) lista1).insertFirst(4);
+		System.out.println(Arrays.toString(lista1.toArray()));
 		Assert.assertArrayEquals(new Integer[] { 4, 3, 2, 1 }, lista1.toArray());
 	}
 

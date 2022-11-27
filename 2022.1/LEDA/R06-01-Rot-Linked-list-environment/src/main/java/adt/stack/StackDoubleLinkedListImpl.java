@@ -21,7 +21,6 @@ public class StackDoubleLinkedListImpl<T> implements Stack<T> {
 		if (element != null) {
 			this.top.insert(element);
 		}
-
 	}
 
 	@Override
