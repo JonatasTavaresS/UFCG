@@ -3,6 +3,9 @@ package adt.hashtable.open;
 import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionLinearProbing;
 
+/**
+ * @author Jônatas Tavares dos Santos - 121110769
+ */
 public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 		AbstractHashtableOpenAddress<T> {
 
@@ -15,10 +18,13 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void insert(T element) {
-		if (!this.isFull() && element != null) {
+		if (this.isFull()) {
+			throw new HashtableOverflowException();
+		}
+		if (element != null && this.search(element) == null) {
 			int probe = 0;
 			int hash = ((HashFunctionLinearProbing<T>) this.getHashFunction()).hash(element, probe);
-			while (probe < this.capacity() && this.table[hash] != null && this.table[hash] != this.deletedElement) {
+			while (this.table[hash] != null && !this.table[hash].equals(this.deletedElement)) {
 				probe++;
 				hash = ((HashFunctionLinearProbing<T>) this.getHashFunction()).hash(element, probe);
 				this.COLLISIONS++;
@@ -30,19 +36,20 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 
 	@Override
 	public void remove(T element) {
-		if (!this.isEmpty() && element != null) {
-			if (this.indexOf(element) >= 0) {
-				this.table[this.indexOf(element)] = this.deletedElement;
-				this.elements--;
-			}
+		int index = this.indexOf(element);
+		if (index >= 0) {
+			this.table[index] = this.deletedElement;
+			this.elements--;
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T search(T element) {
 		T search = null;
-		if (this.indexOf(element) >= 0) {
-			search = (T) this.table[this.indexOf(element)];
+		int index = this.indexOf(element);
+		if (index >= 0) {
+			search = (T) this.table[index];
 		}
 		return search;
 	}
@@ -53,8 +60,8 @@ public class HashtableOpenAddressLinearProbingImpl<T extends Storable> extends
 		if (!this.isEmpty() && element != null) {
 			int probe = 0;
 			int hash = ((HashFunctionLinearProbing<T>) this.getHashFunction()).hash(element, probe);
-			while (probe < this.capacity() && this.table[hash] != null
-					&& this.table[hash] != this.deletedElement && !this.table[hash].equals(element)) {
+			while (probe < this.capacity() && this.table[hash] != null && !this.table[hash].equals(this.deletedElement)
+					&& !this.table[hash].equals(element)) {
 				probe++;
 				hash = ((HashFunctionLinearProbing<T>) this.getHashFunction()).hash(element, probe);
 			}

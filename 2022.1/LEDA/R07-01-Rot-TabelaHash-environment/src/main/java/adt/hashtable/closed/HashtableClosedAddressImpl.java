@@ -8,6 +8,9 @@ import adt.hashtable.hashfunction.HashFunctionClosedAddressMethod;
 import adt.hashtable.hashfunction.HashFunctionFactory;
 import util.Util;
 
+/**
+ * @author Jônatas Tavares dos Santos - 121110769
+ */
 public class HashtableClosedAddressImpl<T> extends
 		AbstractHashtableClosedAddress<T> {
 
@@ -63,12 +66,13 @@ public class HashtableClosedAddressImpl<T> extends
 		return number;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void insert(T element) {
-		if (element != null && !this.contains(element)) {
-			int hash = this.getHash(element);
+		if (element != null && this.search(element) == null) {
+			int hash = ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 			if (this.table[hash] == null) {
-				this.table[hash] = new LinkedList<>();
+				this.table[hash] = new LinkedList<T>();
 			} else {
 				this.COLLISIONS++;
 			}
@@ -77,29 +81,27 @@ public class HashtableClosedAddressImpl<T> extends
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void remove(T element) {
-		if (!this.isEmpty() && element != null) {
-			int hash = this.getHash(element);
+		int hash = this.indexOf(element);
+		if (hash >= 0) {
 			LinkedList<T> list = (LinkedList<T>) this.table[hash];
-			if (list != null && list.size() > 0) {
-				int i = 0;
-				while (i < (list.size() - 1) && !list.get(i).equals(element)) {
-					i++;
-				}
-				if (list.get(i).equals(element)) {
-					list.remove(i);
-					this.elements--;
-				}
+			int i = 0;
+			while (!list.get(i).equals(element)) {
+				i++;
 			}
+			list.remove(i);
+			this.elements--;
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T search(T element) {
 		T search = null;
 		if (!this.isEmpty() && element != null) {
-			int hash = this.getHash(element);
+			int hash = ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 			LinkedList<T> list = (LinkedList<T>) this.table[hash];
 			if (list != null && list.size() > 0) {
 				int i = 0;
@@ -117,27 +119,10 @@ public class HashtableClosedAddressImpl<T> extends
 	@Override
 	public int indexOf(T element) {
 		int indexOf = -1;
-		if (!this.isEmpty() && element != null) {
-			int hash = this.getHash(element);
-			LinkedList<T> list = (LinkedList<T>) this.table[hash];
-			if (list != null && list.size() > 0) {
-				int i = 0;
-				while (i < (list.size() - 1) && !list.get(i).equals(element)) {
-					i++;
-				}
-				if (list.get(i).equals(element)) {
-					indexOf = hash;
-				}
-			}
+		if (this.search(element) != null) {
+			indexOf = ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
 		}
 		return indexOf;
 	}
 
-	private int getHash(T element) {
-		return ((HashFunctionClosedAddress<T>) this.hashFunction).hash(element);
-	}
-
-	private boolean contains(T element) {
-		return this.indexOf(element) >= 0;
-	}
 }
