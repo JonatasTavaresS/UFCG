@@ -24,7 +24,8 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 		if (element != null && this.search(element) == null) {
 			int probe = 0;
 			int hash = ((HashFunctionQuadraticProbing<T>) this.getHashFunction()).hash(element, probe);
-			while (this.table[hash] != null && !this.table[hash].equals(this.deletedElement)) {
+			while (probe < this.capacity() && this.table[hash] != null
+					&& !this.table[hash].equals(this.deletedElement)) {
 				probe++;
 				hash = ((HashFunctionQuadraticProbing<T>) this.getHashFunction()).hash(element, probe);
 				this.COLLISIONS++;
@@ -60,8 +61,7 @@ public class HashtableOpenAddressQuadraticProbingImpl<T extends Storable>
 		if (!this.isEmpty() && element != null) {
 			int probe = 0;
 			int hash = ((HashFunctionQuadraticProbing<T>) this.getHashFunction()).hash(element, probe);
-			while (probe < this.capacity() && this.table[hash] != null && !this.table[hash].equals(this.deletedElement)
-					&& !this.table[hash].equals(element)) {
+			while (probe < this.capacity() && this.table[hash] != null && !this.table[hash].equals(element)) {
 				probe++;
 				hash = ((HashFunctionQuadraticProbing<T>) this.getHashFunction()).hash(element, probe);
 			}
