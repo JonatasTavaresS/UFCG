@@ -1,15 +1,15 @@
 package adt.bst;
 
-import static org.junit.Assert.*;
-
-import java.util.Arrays;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import adt.bst.BSTImpl;
 import adt.bt.BTNode;
 
+@SuppressWarnings("removal")
 public class StudentBSTTest {
 
 	private BSTImpl<Integer> tree;
@@ -130,7 +130,6 @@ public class StudentBSTTest {
 		fillTree(); // -40 -34 0 2 5 6 9 12 23 67 76 232
 
 		Integer[] order = { -40, -34, 0, 2, 5, 6, 9, 12, 23, 67, 76, 232 };
-		System.out.println(Arrays.toString(tree.order()));
 		assertArrayEquals(order, tree.order());
 
 		tree.remove(6);
