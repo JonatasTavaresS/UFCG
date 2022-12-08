@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="adt.bst.SimpleBSTManipulationImplTest" time="0" errors="0" skipped="0">
+<testsuite tests="18" failures="0" name="adt.bst.SimpleBSTManipulationImplTest" time="0.001" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="17.0.5+9-LTS-191"/>
@@ -61,7 +61,7 @@
     <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testIsSimilar01" time="0"/>
+  <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testIsSimilar01" time="0.001"/>
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testIsSimilar02" time="0"/>
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testIsSimilar03" time="0"/>
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testIsSimilar04" time="0"/>
@@ -78,4 +78,5 @@
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testEquals04" time="0"/>
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testEquals05" time="0"/>
   <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testEquals06" time="0"/>
+  <testcase classname="adt.bst.SimpleBSTManipulationImplTest" name="testEquals07" time="0"/>
 </testsuite>

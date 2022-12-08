@@ -1,6 +1,7 @@
 package adt.bst.extended;
 
 import adt.bst.BSTImpl;
+import adt.bst.BSTNode;
 
 /**
  * Note que esta classe estende sua implementacao de BST (BSTImpl).
@@ -15,20 +16,23 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	public Integer floor(Integer[] array, double numero) {
 		Integer floor = null;
 		if (array != null && array.length > 0) {
-			floor = this.floor(array, numero, 0, null);
+			for (Integer i : array) {
+				this.insert(i);
+			}
+			floor = this.floor(this.getRoot(), numero, floor);
 		}
 		return floor;
 	}
 
-	private Integer floor(Integer[] array, double numero, int index, Integer floor) {
-		if (index < array.length) {
-			this.insert(array[index]);
-			Integer actualFloor = array[index];
-			if (numero == actualFloor || (floor == null && actualFloor < numero)
-					|| (floor != null && actualFloor < numero && actualFloor > floor)) {
-				floor = actualFloor;
+	private Integer floor(BSTNode<Integer> node, double numero, Integer floor) {
+		if (!node.isEmpty()) {
+			if (numero == node.getData()) {
+				floor = node.getData();
+			} else if (numero < node.getData()) {
+				floor = this.floor((BSTNode<Integer>) node.getLeft(), numero, floor);
+			} else {
+				floor = this.floor((BSTNode<Integer>) node.getRight(), numero, node.getData());
 			}
-			floor = this.floor(array, numero, index + 1, floor);
 		}
 		return floor;
 	}
@@ -37,20 +41,23 @@ public class FloorCeilBSTImpl extends BSTImpl<Integer> implements FloorCeilBST {
 	public Integer ceil(Integer[] array, double numero) {
 		Integer ceil = null;
 		if (array != null && array.length > 0) {
-			ceil = this.ceil(array, numero, 0, null);
+			for (Integer i : array) {
+				this.insert(i);
+			}
+			ceil = this.ceil(this.getRoot(), numero, ceil);
 		}
 		return ceil;
 	}
 
-	private Integer ceil(Integer[] array, double numero, int index, Integer ceil) {
-		if (index < array.length) {
-			this.insert(array[index]);
-			Integer actualCeil = array[index];
-			if (numero == actualCeil || (ceil == null && actualCeil > numero)
-					|| (ceil != null && actualCeil > numero && actualCeil < ceil)) {
-				ceil = actualCeil;
+	private Integer ceil(BSTNode<Integer> node, double numero, Integer ceil) {
+		if (!node.isEmpty()) {
+			if (numero == node.getData()) {
+				ceil = node.getData();
+			} else if (numero > node.getData()) {
+				ceil = this.ceil((BSTNode<Integer>) node.getRight(), numero, ceil);
+			} else {
+				ceil = this.ceil((BSTNode<Integer>) node.getLeft(), numero, node.getData());
 			}
-			ceil = this.ceil(array, numero, index + 1, ceil);
 		}
 		return ceil;
 	}

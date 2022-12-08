@@ -20,14 +20,12 @@ public class SimpleBSTManipulationImpl<T extends Comparable<T>> implements Simpl
 
 	private boolean equals(BSTNode<T> node1, BSTNode<T> node2) {
 		boolean equals = false;
-		if (node1.equals(node2)) {
-			if (node1.isEmpty() && node2.isEmpty()) {
-				equals = true;
-			} else {
-				boolean left = this.equals((BSTNode<T>) node1.getLeft(), (BSTNode<T>) node2.getLeft());
-				boolean right = this.equals((BSTNode<T>) node1.getRight(), (BSTNode<T>) node2.getRight());
-				equals = left && right;
-			}
+		if (node1.isEmpty() && node2.isEmpty()) {
+			equals = true;
+		} else if (node1.getData().equals(node2.getData())) {
+			boolean left = this.equals((BSTNode<T>) node1.getLeft(), (BSTNode<T>) node2.getLeft());
+			boolean right = this.equals((BSTNode<T>) node1.getRight(), (BSTNode<T>) node2.getRight());
+			equals = left && right;
 		}
 		return equals;
 	}

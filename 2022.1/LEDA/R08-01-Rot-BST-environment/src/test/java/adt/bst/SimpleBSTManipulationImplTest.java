@@ -68,6 +68,13 @@ public class SimpleBSTManipulationImplTest {
     }
 
     @Test
+    public void testEquals07() {
+        BSTImpl<Integer> tree1 = this.fillTree(new Integer[] { 6, 23, -34, 5, 9, 2, 0, 76, 12, 67, 232, -40 });
+        BSTImpl<Integer> tree2 = this.fillTree(new Integer[] { 5, 22, -35, 4, 8, 1, -1, 75, 11, 66, 231, -41 });
+        assertFalse(this.implementation.equals(tree1, tree2));
+    }
+
+    @Test
     public void testIsSimilar01() {
         BSTImpl<Integer> tree1 = null;
         BSTImpl<Integer> tree2 = null;
