@@ -17,10 +17,10 @@ public class StudentMinHeapTest {
 
 	@Before
 	public void setUp() {
-		// TODO Instancie seu comparator para fazer sua estrutura funcionar como
+		// Instancie seu comparator para fazer sua estrutura funcionar como
 		// uma min heap aqui. Use instanciacao anonima da interface
 		// Comparator!!!!
-		Comparator<Integer> comparator = null;
+		Comparator<Integer> comparator = new ComparatorMinHeap<>();
 		heap = new HeapImpl<Integer>(comparator);
 	}
 
@@ -53,6 +53,7 @@ public class StudentMinHeapTest {
 		verifyHeap(new Integer[] { -10, -5, -2, 3, 0, 8, 14, 12, 7, 8 });
 	}
 
+	@Deprecated
 	@Test
 	public void testRemove() {
 		heap.insert(22);
