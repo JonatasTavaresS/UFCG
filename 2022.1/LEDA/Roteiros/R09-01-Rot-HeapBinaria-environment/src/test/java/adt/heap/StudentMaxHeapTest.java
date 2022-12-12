@@ -31,7 +31,7 @@ public class StudentMaxHeapTest {
 		assertEquals(8, heap.size());
 		assertFalse(heap.isEmpty());
 
-		//verifyHeap(new Integer[] { 99, 12, 82, 6, 34, 64, 58, 1 });
+		// verifyHeap(new Integer[] { 99, 12, 82, 6, 34, 64, 58, 1 });
 		verifyHeap(new Integer[] { 99, 34, 82, 6, 12, 64, 58, 1 });
 	}
 

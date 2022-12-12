@@ -153,19 +153,22 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public T[] heapsort(T[] array) {
-		T[] heapsort = null;
-		if (array != null) {
+		if (array != null && array.length > 1) {
 			this.buildHeap(array);
-			for (int i = this.size() - 1; i > 0; i--) {
+			for (int i = this.index; i >= 1; i--) {
 				Util.swap(array, 0, i);
 				this.index--;
 				this.heapify(0);
 			}
-			this.index = array.length - 1;
-			heapsort = this.toArray();
-			this.index = -1;
+			this.index--;
+			if (this.getHeap()[0].compareTo(this.getHeap()[1]) > 0) {
+				int j = array.length - 1;
+				for (int i = 0; i < j; i++) {
+					Util.swap(array, i, j--);
+				}
+			}
 		}
-		return heapsort;
+		return array;
 	}
 
 	@Override
