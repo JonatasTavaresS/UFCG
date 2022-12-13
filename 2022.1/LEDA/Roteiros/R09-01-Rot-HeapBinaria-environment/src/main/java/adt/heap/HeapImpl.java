@@ -15,6 +15,8 @@ import util.Util;
  * Dessa forma, dependendo do comparator, a heap pode funcionar como uma
  * max-heap
  * ou min-heap.
+ * 
+ * @author Jônatas Tavares dos Santos - 121110769
  */
 public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
@@ -100,7 +102,6 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 				Util.swap(this.getHeap(), position, largest);
 				this.heapify(largest);
 			}
-
 		}
 	}
 
@@ -111,7 +112,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 			heap = Arrays.copyOf(heap, heap.length + INCREASING_FACTOR);
 		}
 		// /////////////////////////////////////////////////////////////////
-		if (element != null) { // Antes?
+		if (element != null) {
 			int i = ++this.index;
 			while (i > 0 && this.getComparator().compare(this.getHeap()[this.parent(i)], element) < 0) {
 				this.getHeap()[i] = this.getHeap()[this.parent(i)];
@@ -123,7 +124,7 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 
 	@Override
 	public void buildHeap(T[] array) {
-		if (array != null) { // Array null?
+		if (array != null) {
 			this.heap = array;
 			this.index = array.length - 1;
 			for (int i = this.index / 2; i >= 0; i--) {
@@ -155,12 +156,11 @@ public class HeapImpl<T extends Comparable<T>> implements Heap<T> {
 	public T[] heapsort(T[] array) {
 		if (array != null && array.length > 1) {
 			this.buildHeap(array);
-			for (int i = this.index; i >= 1; i--) {
+			for (int i = this.index; i >= 0; i--) {
 				Util.swap(array, 0, i);
 				this.index--;
 				this.heapify(0);
 			}
-			this.index--;
 			if (this.getHeap()[0].compareTo(this.getHeap()[1]) > 0) {
 				int j = array.length - 1;
 				for (int i = 0; i < j; i++) {
