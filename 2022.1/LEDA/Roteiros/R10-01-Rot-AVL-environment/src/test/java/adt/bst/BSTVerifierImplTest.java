@@ -15,14 +15,6 @@ public class BSTVerifierImplTest {
         // this.implementation = new BSTVerifierImpl<>(tree);
     }
 
-    private BSTImpl<Integer> fillTree(Integer[] array) {
-        BSTImpl<Integer> tree = new BSTImpl<>();
-        for (int i : array) {
-            tree.insert(i);
-        }
-        return tree;
-    }
-
     @Test
     public void testIsBST01() {
 

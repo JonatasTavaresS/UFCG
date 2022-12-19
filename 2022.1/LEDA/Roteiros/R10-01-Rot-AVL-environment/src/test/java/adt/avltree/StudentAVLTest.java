@@ -25,6 +25,7 @@ public class StudentAVLTest {
 		assertEquals(NIL, avl.getRoot());
 	}
 
+	@Deprecated
 	@Test
 	public void testInsert() {
 		avl.insert(-10);
