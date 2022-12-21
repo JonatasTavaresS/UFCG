@@ -25,7 +25,7 @@ public class AVLTreeVerifierImpl<T extends Comparable<T>> extends BSTVerifierImp
 
 	@Override
 	public boolean isAVLTree() {
-		return isBST() && this.isAVLTree(this.getAVLTree().getRoot());
+		return this.isBST() && (this.getAVLTree().isEmpty() || this.isAVLTree(this.avlTree.getRoot()));
 	}
 
 	private boolean isAVLTree(BSTNode<T> node) {

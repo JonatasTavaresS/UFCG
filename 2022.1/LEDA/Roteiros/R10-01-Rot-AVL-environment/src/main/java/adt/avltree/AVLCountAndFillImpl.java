@@ -40,36 +40,40 @@ public class AVLCountAndFillImpl<T extends Comparable<T>> extends
 
 	@Override
 	public void fillWithoutRebalance(T[] array) {
-		for (T element : array) {
-			this.insert(this.getRoot(), element);
+		if (array != null && array.length > 0) {
+			for (T element : array) {
+				this.insert(this.getRoot(), element);
+			}
 		}
 	}
 
 	protected void rebalance(BSTNode<T> node) {
-		BSTNode<T> newRoot = null;
-		int balance = this.calculateBalance(node);
-		if (Math.abs(balance) > 1)
-			if (balance > 1)
-				if (this.calculateBalance((BSTNode<T>) node.getLeft()) >= 0) {
-					newRoot = Util.rightRotation(node);
-					this.LLcounter++;
-				} else {
-					Util.leftRotation((BSTNode<T>) node.getLeft());
-					newRoot = Util.rightRotation(node);
-					this.LRcounter++;
+		if (node != null) {
+			BSTNode<T> newRoot = null;
+			int balance = this.calculateBalance(node);
+			if (Math.abs(balance) > 1)
+				if (balance > 1)
+					if (this.calculateBalance((BSTNode<T>) node.getLeft()) >= 0) {
+						newRoot = Util.rightRotation(node);
+						this.LLcounter++;
+					} else {
+						Util.leftRotation((BSTNode<T>) node.getLeft());
+						newRoot = Util.rightRotation(node);
+						this.LRcounter++;
+					}
+				else {
+					if (this.calculateBalance((BSTNode<T>) node.getRight()) <= 0) {
+						newRoot = Util.leftRotation(node);
+						this.RRcounter++;
+					} else {
+						Util.rightRotation((BSTNode<T>) node.getRight());
+						newRoot = Util.leftRotation(node);
+						this.RLcounter++;
+					}
 				}
-			else {
-				if (this.calculateBalance((BSTNode<T>) node.getRight()) <= 0) {
-					newRoot = Util.leftRotation(node);
-					this.RRcounter++;
-				} else {
-					Util.rightRotation((BSTNode<T>) node.getRight());
-					newRoot = Util.leftRotation(node);
-					this.RLcounter++;
-				}
+			if (this.getRoot().equals(node) && newRoot != null) {
+				this.root = newRoot;
 			}
-		if (this.getRoot().equals(node) && newRoot != null) {
-			this.root = newRoot;
 		}
 	}
 
