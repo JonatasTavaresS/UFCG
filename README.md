@@ -16,4 +16,5 @@ Repositório contendo implementações de atividades que foram desenvolvidas ao 
 ### [2022.1](2022.1)
 - [Estruturas de Dados e Algoritmos](2022.1/EDA)
 - [Laboratório de Estruturas de Dados e Algoritmos](2022.1/LEDA)
+- [Lógica para Computação](2022.1/LC)
 - [Teoria dos Grafos](2022.1/TG)
